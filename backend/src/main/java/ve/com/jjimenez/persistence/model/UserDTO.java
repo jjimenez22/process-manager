@@ -3,6 +3,7 @@ package ve.com.jjimenez.persistence.model;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+//@Getter @Setter @NoArgsConstructor
 public class UserDTO {
     @NotNull
     @NotEmpty
@@ -14,10 +15,10 @@ public class UserDTO {
 
     @NotNull
     @NotEmpty
-    private String password;
-    private String matchingPassword;
+    private String email;
 
     @NotNull
     @NotEmpty
-    private String email;
+    private String password;
+    private String matchingPassword;
 }
