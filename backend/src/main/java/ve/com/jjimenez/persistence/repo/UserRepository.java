@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import ve.com.jjimenez.persistence.model.User;
 
 @Repository
-public interface UserRepo extends CrudRepository<User, Long> {
+public interface UserRepository extends CrudRepository<User, Long> {
 }
