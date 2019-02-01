@@ -40,9 +40,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(restAuthenticationEntryPoint)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/user/**").hasRole("ADMIN")
-                .antMatchers("/api/process/**").hasRole("MANAGER")
-                .antMatchers("/api/conclusion/**").hasRole("ENDER")//todo right translation
+                .antMatchers("/api/user/**").hasAuthority("ADMIN")
+                .antMatchers("/api/process/**").hasAuthority("MANAGER")
+                .antMatchers("/api/conclusion/**").hasAuthority("ENDER")//todo right translation
                 .and()
                 .formLogin()
                 .successHandler(successHandler)

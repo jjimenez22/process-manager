@@ -53,6 +53,7 @@ public class UserService {
         user.setFirstName(dto.getFirstName());
         user.setLastName(dto.getLastName());
         user.setEmail(dto.getEmail());
+        user.setRole(dto.getRole());
         return user;
     }
 
@@ -62,6 +63,7 @@ public class UserService {
         dto.setFirstName(user.getFirstName());
         dto.setLastName(user.getLastName());
         dto.setEmail(user.getEmail());
+        dto.setRole(user.getRole());
         return dto;
     }
 }
