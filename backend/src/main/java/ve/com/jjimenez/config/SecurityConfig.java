@@ -39,16 +39,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                 .authenticationEntryPoint(restAuthenticationEntryPoint)
                 .and()
-                .authorizeRequests()
-                .antMatchers("/api/user/**").hasAuthority("ADMIN")
-                .antMatchers("/api/process/**").hasAuthority("MANAGER")
-                .antMatchers("/api/conclusion/**").hasAuthority("ENDER")//todo right translation
-                .and()
-                .formLogin()
-                .successHandler(successHandler)
-                .failureHandler(failureHandler)
-                .and()
-                .logout();
+                .authorizeRequests().anyRequest().permitAll();
+//                .antMatchers("/api/user/**").hasAuthority("ADMIN")
+//                .antMatchers("/api/process/**").hasAuthority("MANAGER")
+//                .antMatchers("/api/conclusion/**").hasAuthority("ENDER")//todo right translation
+//                .and()
+//                .formLogin()
+//                .successHandler(successHandler)
+//                .failureHandler(failureHandler)
+//                .and()
+//                .logout();
     }
 
     @Bean
