@@ -1,10 +1,11 @@
 package ve.com.jjimenez.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import ve.com.jjimenez.persistence.model.user.ResponseUserDTO;
-import ve.com.jjimenez.persistence.model.user.UserDTO;
 import ve.com.jjimenez.web.service.UserService;
 
 @RestController
@@ -28,19 +29,4 @@ public class UserController {
         return service.findById(id);
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseUserDTO create(@RequestBody UserDTO user) {
-        return service.save(user);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseUserDTO update(@PathVariable Long id, @RequestBody UserDTO user) {
-        return service.save(user);
-    }
-
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        service.delete(id);
-    }
 }
