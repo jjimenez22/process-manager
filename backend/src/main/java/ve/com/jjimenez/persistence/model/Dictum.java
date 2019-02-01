@@ -1,4 +1,4 @@
-package ve.com.jjimenez.persistence.model.user;
+package ve.com.jjimenez.persistence.model;
 
 import lombok.Data;
 
@@ -10,25 +10,16 @@ import java.io.Serializable;
 
 @Entity
 @Data
-public class User implements Serializable {
+public class Dictum implements Serializable {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String email;
-
-    @Column
-    private String firstName;
-
-    @Column
-    private String lastName;
+    @Column(nullable = false)
+    private String title;
 
     @Column(nullable = false)
-    private String password;
-
-    @Column(nullable = false)
-    private String role;
-
+    private String content;
 }
+
