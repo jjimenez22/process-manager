@@ -1,6 +1,7 @@
 package ve.com.jjimenez.web.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ve.com.jjimenez.persistence.model.user.ResponseUserDTO;
 import ve.com.jjimenez.persistence.model.user.User;
@@ -14,10 +15,12 @@ import java.util.stream.StreamSupport;
 public class UserService {
 
     private final UserRepository repository;
+    private final PasswordEncoder encoder;
 
     @Autowired
-    public UserService(UserRepository repository) {
+    public UserService(UserRepository repository, PasswordEncoder encoder) {
         this.repository = repository;
+        this.encoder = encoder;
     }
 
     public Iterable findAll() {
@@ -46,7 +49,7 @@ public class UserService {
 
     private User fromDTOtoUser(UserDTO dto) {
         User user = new User();
-        user.setPassword(dto.getPassword());
+        user.setPassword(encoder.encode(dto.getPassword()));
         user.setFirstName(dto.getFirstName());
         user.setLastName(dto.getLastName());
         user.setEmail(dto.getEmail());
