@@ -3,10 +3,12 @@ package ve.com.jjimenez.web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ve.com.jjimenez.persistence.model.UserDTO;
+import ve.com.jjimenez.persistence.model.user.ResponseUserDTO;
+import ve.com.jjimenez.persistence.model.user.UserDTO;
 import ve.com.jjimenez.web.service.UserService;
 
-@RestController("/api/user")
+@RestController
+@RequestMapping("/api/user")
 public class UserController {
 
     private final UserService service;
@@ -22,18 +24,18 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public UserDTO findById(@PathVariable Long id) {
+    public ResponseUserDTO findById(@PathVariable Long id) {
         return service.findById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public UserDTO create(@RequestBody UserDTO user) {
+    public ResponseUserDTO create(@RequestBody UserDTO user) {
         return service.save(user);
     }
 
     @PutMapping("/{id}")
-    public UserDTO update(@PathVariable Long id, @RequestBody UserDTO user) {
+    public ResponseUserDTO update(@PathVariable Long id, @RequestBody UserDTO user) {
         return service.save(user);
     }
 

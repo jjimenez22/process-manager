@@ -2,8 +2,9 @@ package ve.com.jjimenez.web.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ve.com.jjimenez.persistence.model.User;
-import ve.com.jjimenez.persistence.model.UserDTO;
+import ve.com.jjimenez.persistence.model.user.ResponseUserDTO;
+import ve.com.jjimenez.persistence.model.user.User;
+import ve.com.jjimenez.persistence.model.user.UserDTO;
 import ve.com.jjimenez.persistence.repo.UserRepository;
 
 import java.util.stream.Collectors;
@@ -21,25 +22,30 @@ public class UserService {
 
     public Iterable findAll() {
         return StreamSupport.stream(repository.findAll().spliterator(), true)
-                .map(this::dtoFromUser)
+                .map(this::fromUserToDTO)
                 .collect(Collectors.toList());
     }
 
-    public UserDTO findById(Long id) {
-        return dtoFromUser(repository.findById(id).get());
+    public ResponseUserDTO findById(Long id) {
+        return fromUserToDTO(repository.findById(id).get());
+    }//todo: notfound exception
+
+    public ResponseUserDTO save(UserDTO dto) {
+        return fromUserToDTO(repository.save(fromDTOtoUser(dto)));
     }
 
-    public UserDTO save(UserDTO dto) {
-        return dtoFromUser(repository.save(userFromDto(dto)));
+    public ResponseUserDTO update(Long id, UserDTO dto) {
+        User user = fromDTOtoUser(dto);
+        user.setId(id);
+        return fromUserToDTO(repository.save(user));
     }
 
     public void delete(Long id) {
         repository.deleteById(id);
     }
 
-    private User userFromDto(UserDTO dto) {
+    private User fromDTOtoUser(UserDTO dto) {
         User user = new User();
-        user.setId(dto.getId());
         user.setPassword(dto.getPassword());
         user.setFirstName(dto.getFirstName());
         user.setLastName(dto.getLastName());
@@ -47,13 +53,12 @@ public class UserService {
         return user;
     }
 
-    private UserDTO dtoFromUser(User user) {
-        UserDTO dto = new UserDTO();
+    private ResponseUserDTO fromUserToDTO(User user) {
+        ResponseUserDTO dto = new ResponseUserDTO();
         dto.setId(user.getId());
         dto.setFirstName(user.getFirstName());
         dto.setLastName(user.getLastName());
         dto.setEmail(user.getEmail());
-        dto.setPassword(user.getPassword());
         return dto;
     }
 }

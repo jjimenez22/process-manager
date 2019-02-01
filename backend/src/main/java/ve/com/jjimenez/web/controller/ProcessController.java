@@ -7,6 +7,7 @@ import ve.com.jjimenez.persistence.model.Process;
 import ve.com.jjimenez.persistence.repo.ProcessRepository;
 
 @RestController
+@RequestMapping("/api/process")
 public class ProcessController {
 
     private final ProcessRepository repository;
