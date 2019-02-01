@@ -1,4 +1,4 @@
-package ve.com.jjimenez.persistence.model;
+package ve.com.jjimenez.persistence.model.user;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,7 +7,6 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity
-//@Getter @Setter @NoArgsConstructor
 public class User implements Serializable {
 
     @Id
@@ -25,6 +24,9 @@ public class User implements Serializable {
 
     @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
+    private String role;
 
     public User() {
     }
@@ -67,5 +69,13 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

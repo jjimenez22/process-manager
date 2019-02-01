@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 public class Process implements Serializable {
@@ -20,8 +19,8 @@ public class Process implements Serializable {
     @Column
     private String description;
 
-    @Column
-    private List<Long> users;
+//    @Column
+//    private List<Long> users;
 
     public Process() {
     }
@@ -50,11 +49,11 @@ public class Process implements Serializable {
         this.description = description;
     }
 
-    public List<Long> getUsers() {
-        return users;
-    }
+//    public List<Long> getUsers() {
+//        return users;
+//    }
 
-    public void setUsers(List<Long> users) {
-        this.users = users;
-    }
+//    public void setUsers(List<Long> users) {
+//        this.users = users;
+//    }
 }

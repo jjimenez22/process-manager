@@ -1,15 +1,9 @@
-package ve.com.jjimenez.persistence.model;
+package ve.com.jjimenez.persistence.model.user;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-//@Getter @Setter @NoArgsConstructor
-public class UserDTO {
-
-    private Long id;
-    @NotNull
-    @NotEmpty
-    private String matchingPassword;
+abstract class AbstractUserDTO {
 
     private String firstName;
 
@@ -21,17 +15,9 @@ public class UserDTO {
 
     @NotNull
     @NotEmpty
-    private String password;
+    private String role;
 
-    public UserDTO() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public AbstractUserDTO() {
     }
 
     public String getFirstName() {
@@ -58,19 +44,11 @@ public class UserDTO {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getRole() {
+        return role;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getMatchingPassword() {
-        return matchingPassword;
-    }
-
-    public void setMatchingPassword(String matchingPassword) {
-        this.matchingPassword = matchingPassword;
+    public void setRole(String role) {
+        this.role = role;
     }
 }
