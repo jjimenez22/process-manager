@@ -4,43 +4,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ve.com.jjimenez.persistence.model.Process;
-import ve.com.jjimenez.persistence.repo.ProcessRepository;
+import ve.com.jjimenez.web.service.ProcessService;
 
 @RestController
 @RequestMapping("/api/process")
 public class ProcessController {
 
-    private final ProcessRepository repository;
+    private final ProcessService service;
 
     @Autowired
-    public ProcessController(ProcessRepository repository) {
-        this.repository = repository;
+    public ProcessController(ProcessService service) {
+        this.service = service;
     }
 
     @GetMapping
     private Iterable findAll() {
-        return repository.findAll();
+        return service.findAll();
     }
 
     @GetMapping("/{id}")
     private Process findById(@PathVariable Long id) {
-        return repository.findById(id).get();
+        return service.findById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     private Process create(@RequestBody Process process) {
-        return repository.save(process);
+        return service.save(process);
     }
 
     @PutMapping("/{id}")
     private Process update(@PathVariable Long id, @RequestBody Process process) {
-        return repository.save(process);
+        return service.save(process);
     }
 
     @DeleteMapping("{id}")
     private void delete(@PathVariable Long id) {
-        repository.deleteById(id);
+        service.delete(id);
     }
 
 }
