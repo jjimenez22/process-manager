@@ -1,12 +1,18 @@
 package ve.com.jjimenez.persistence.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import ve.com.jjimenez.persistence.model.user.User;
+
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
+@Data
+@EqualsAndHashCode(exclude = {"users"})
+@ToString(exclude = {"users"})
 public class Process implements Serializable {
 
     @Id
@@ -19,41 +25,13 @@ public class Process implements Serializable {
     @Column
     private String description;
 
-//    @Column
-//    private List<Long> users;
+    @ManyToMany(mappedBy = "processes", fetch = FetchType.EAGER)
+    private Set<User> users;
 
-    public Process() {
-    }
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "process_dictum",
+            joinColumns = @JoinColumn(name = "dictum_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "process_id", referencedColumnName = "id"))
+    private Set<Dictum> dictums;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-//    public List<Long> getUsers() {
-//        return users;
-//    }
-
-//    public void setUsers(List<Long> users) {
-//        this.users = users;
-//    }
 }

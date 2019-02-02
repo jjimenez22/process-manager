@@ -8,29 +8,19 @@ import ve.com.jjimenez.persistence.model.user.UserDTO;
 import ve.com.jjimenez.web.service.UserService;
 
 @RestController
-@RequestMapping("/api/user")
-public class UserController {
+@RequestMapping("/api/admin")
+public class AdminController {
 
     private final UserService service;
 
     @Autowired
-    public UserController(UserService service) {
+    public AdminController(UserService service) {
         this.service = service;
-    }
-
-    @GetMapping
-    public Iterable findAll() {
-        return service.findAll();
-    }
-
-    @GetMapping("/{id}")
-    public ResponseUserDTO findById(@PathVariable Long id) {
-        return service.findById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseUserDTO create(@RequestBody UserDTO user) {
+    public ResponseUserDTO register(@RequestBody UserDTO user) {
         return service.save(user);
     }
 
