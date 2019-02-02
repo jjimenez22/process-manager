@@ -1,15 +1,18 @@
 package ve.com.jjimenez.persistence.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import ve.com.jjimenez.persistence.model.user.User;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Data
+@EqualsAndHashCode(exclude = {"users"})
+@ToString(exclude = {"users"})
 public class Process implements Serializable {
 
     @Id
@@ -21,5 +24,14 @@ public class Process implements Serializable {
 
     @Column
     private String description;
+
+    @ManyToMany(mappedBy = "processes", fetch = FetchType.EAGER)
+    private Set<User> users;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "process_dictum",
+            joinColumns = @JoinColumn(name = "dictum_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "process_id", referencedColumnName = "id"))
+    private Set<Dictum> dictums;
 
 }

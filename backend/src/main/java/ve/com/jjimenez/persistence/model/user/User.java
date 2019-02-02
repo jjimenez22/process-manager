@@ -1,15 +1,18 @@
 package ve.com.jjimenez.persistence.model.user;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import ve.com.jjimenez.persistence.model.Process;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Data
+@EqualsAndHashCode(exclude = {"processes"})
+@ToString(exclude = {"processes"})
 public class User implements Serializable {
 
     @Id
@@ -30,5 +33,11 @@ public class User implements Serializable {
 
     @Column(nullable = false)
     private String role;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_process",
+            joinColumns = @JoinColumn(name = "process_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
+    private Set<Process> processes;
 
 }

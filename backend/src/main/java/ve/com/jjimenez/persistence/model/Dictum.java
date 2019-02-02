@@ -1,15 +1,17 @@
 package ve.com.jjimenez.persistence.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Data
+@EqualsAndHashCode(exclude = {"processes"})
+@ToString(exclude = {"processes"})
 public class Dictum implements Serializable {
 
     @Id
@@ -21,5 +23,8 @@ public class Dictum implements Serializable {
 
     @Column(nullable = false)
     private String content;
+
+    @ManyToMany(mappedBy = "dictums", fetch = FetchType.EAGER)
+    private Set<Process> processes;
 }
 
