@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import ProcessRow from "./ProcessRow";
-import {BASE_PATH, restDelete, restGet} from "../util/RestUtils";
+import {BASE_PATH, restDelete, restGet} from "../../util/RestUtils";
 
 export default class ProcessTable extends Component {
 
