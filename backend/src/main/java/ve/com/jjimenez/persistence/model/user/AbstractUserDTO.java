@@ -18,7 +18,7 @@ abstract class AbstractUserDTO {
 
     @NotNull
     @NotEmpty
-    private String email;
+    private String username;
 
     @NotNull
     @NotEmpty

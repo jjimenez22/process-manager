@@ -41,7 +41,7 @@ public class UserService {
         user.setPassword(encoder.encode(dto.getPassword()));
         user.setFirstName(dto.getFirstName());
         user.setLastName(dto.getLastName());
-        user.setEmail(dto.getEmail());
+        user.setUsername(dto.getUsername());
         user.setRole(dto.getRole());
         return user;
     }
@@ -51,7 +51,7 @@ public class UserService {
         dto.setId(user.getId());
         dto.setFirstName(user.getFirstName());
         dto.setLastName(user.getLastName());
-        dto.setEmail(user.getEmail());
+        dto.setUsername(user.getUsername());
         dto.setRole(user.getRole());
         return dto;
     }
