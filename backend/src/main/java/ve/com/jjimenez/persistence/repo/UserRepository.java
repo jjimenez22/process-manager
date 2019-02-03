@@ -11,7 +11,7 @@ import java.util.Optional;
 @CrossOrigin
 public interface UserRepository extends CrudRepository<User, Long> {
 
-    Optional<User> findByEmail(String email);
+    Optional<User> findByUsername(String username);
 
 //    @Override
 //    @RestResource(exported = false)

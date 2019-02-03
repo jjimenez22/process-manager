@@ -23,7 +23,7 @@ public class InitialDataSetUp implements ApplicationListener<ContextRefreshedEve
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         User root = new User();
-        root.setEmail("admin");
+        root.setUsername("admin");
         root.setPassword(encoder.encode("admin"));
         root.setRole("ADMIN");
         userRepository.save(root);
