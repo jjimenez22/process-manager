@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import './App.css';
-import {UserTable} from "./admin/UserTable";
+import RegisterForm from "./admin/RegisterForm";
 
 class App extends Component {
     render() {
         return (
             <div className="App">
-                <UserTable/>
+                <RegisterForm/>
             </div>
         );
     }
