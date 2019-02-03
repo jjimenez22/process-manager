@@ -1,5 +1,6 @@
 import React from "react";
 import UserForm from "./UserForm";
+import {BASE_PATH, restPost} from "../../util/RestUtils";
 
 export default class UserRegistration extends React.Component {
 
@@ -11,16 +12,9 @@ export default class UserRegistration extends React.Component {
             role: this.state.role,
             password: this.state.password
         };
-        fetch('http://localhost:8080/api/admin', {
-            method: 'POST',
-            body: JSON.stringify(body),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(res => res.json())
-            .then(res => console.log("Successfully saved user: ", res))
-            .catch(e => console.error("Error: ", e));
+        restPost(BASE_PATH + '/admin', body, res =>
+            console.log("Successfully saved user: ", res)
+        );
         e.preventDefault();
     };
 
