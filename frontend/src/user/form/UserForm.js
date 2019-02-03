@@ -3,40 +3,41 @@ import RoleSelect from "./RoleSelect";
 import {Link} from "react-router-dom";
 
 export default function UserForm(props) {
+    const user = props.user ? props.user : {};
     return (
         <form>
             <label>
                 Username:
                 <input type="text" placeholder="Username"
-                       value={props.username}
+                       value={user.username}
                        onChange={props.onUsernameChange}
                 />
             </label>
             <label>
                 First name:
                 <input type="text" placeholder="First Name"
-                       value={props.firstName}
+                       value={user.firstName}
                        onChange={props.onFirstNameChange}
                 />
             </label>
             <label>
                 Last name:
                 <input type="text" placeholder="Last Name"
-                       value={props.lastName}
+                       value={user.lastName}
                        onChange={props.onLastNameChange}
                 />
             </label>
             <label>
                 Password:
                 <input type="password" placeholder="Password"
-                       value={props.password}
+                       value={user.password}
                        onChange={props.onPasswordChange}
                 />
             </label>
             <label>
                 Role:
                 <RoleSelect
-                    value={props.role}
+                    value={user.role}
                     onChange={props.onRoleChange}
                 />
             </label>

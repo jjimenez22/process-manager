@@ -13,7 +13,6 @@ export default class UserTable extends Component {
                         key={href}
                         id={href}
                         isEdit={this.props.isEdit}
-                        onEdit={this.props.onEdit}
                         onDelete={this.props.onDelete}
                         isChecked={this.props.isChecked}
                         onChange={this.props.onChange}

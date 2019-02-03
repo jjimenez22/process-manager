@@ -1,64 +1,61 @@
-import React from "react";
+import React, {Component} from "react";
+import {restPut} from "../../util/RestUtils";
 import UserForm from "./UserForm";
-import {BASE_PATH, restPost} from "../../util/RestUtils";
 
-export default class UserRegistration extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            role: "ADMIN",
-            username: '',
-            firstName: '',
-            lastName: '',
-            password: '',
-        };
-
-    }
+export default class UserEdit extends Component {
 
     handleClick = (e) => {
-        const body = {
-            username: this.state.username,
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            role: this.state.role,
-            password: this.state.password
-        };
+        const body = this.state.user;
         const history = this.props.history;
-        restPost(BASE_PATH + '/admin', body, res => {
+        restPut(body._links.self.href, body, res => {
             console.log("Successfully saved user: ", res);
             history.push({pathname: '/'});
         });
         e.preventDefault();
     };
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            user: this.props.location.state.user
+        };
+
+    }
+
     render() {
+        const user = this.state.user;
         return (
             <UserForm
+                user={user}
                 onUsernameChange={e => {
+                    user.username = e.target.value;
                     this.setState({
-                        username: e.target.value
+                        user: user
                     })
                 }}
                 onFirstNameChange={e => {
+                    user.firstName = e.target.value;
                     this.setState({
-                        firstName: e.target.value
+                        user: user
                     })
                 }}
                 onLastNameChange={e => {
+                    user.lastName = e.target.value;
                     this.setState({
-                        lastName: e.target.value
+                        user: user
                     })
                 }}
                 onPasswordChange={e => {
+                    user.password = e.target.value;
                     this.setState({
-                        password: e.target.value
+                        user: user
                     })
                 }}
                 onRoleChange={e => {
+                    user.role = e.target.value;
                     this.setState({
-                        role: e.target.value,
-                    });
+                        user: user
+                    })
                 }}
                 onAccept={this.handleClick}
                 onCancelPath={'/'}

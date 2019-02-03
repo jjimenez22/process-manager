@@ -1,9 +1,16 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 export default function UserRow(props) {
     const editButtons = (
         <div>
-            <button onClick={props.onEdit}>edit</button>
+            <Link to={{
+                pathname: '/user/edit', state: {
+                    user: props.user
+                }
+            }}>
+                <button>edit</button>
+            </Link>
             <button onClick={() => {
                 props.onDelete(props.id)
             }}>delete

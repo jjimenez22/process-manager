@@ -21,6 +21,20 @@ function POST_INIT(body) {
     };
 }
 
+function PUT_INIT(body) {
+    return {
+        method: 'PUT',
+        body: JSON.stringify(body),
+        headers:
+            {
+                'Accept':
+                    'application/json',
+                'Content-Type':
+                    'application/json'
+            }
+    };
+}
+
 const DELETE_INIT = {
     method: 'DELETE',
     headers: new Headers()
@@ -46,6 +60,13 @@ export function restPost(url, body, callback) {
         .then(res => res.json())
         .then(callback)
         .catch(e => console.error("Failed posting data: ", e));
+}
+
+export function restPut(url, body, callback) {
+    fetch(url, PUT_INIT(body))
+        .then(res => res.json())
+        .then(callback)
+        .catch(e => console.error("Failed putting data: ", e));
 }
 
 export function restDelete(url, callback) {
