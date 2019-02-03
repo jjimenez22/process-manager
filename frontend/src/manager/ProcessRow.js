@@ -1,10 +1,10 @@
 import React from "react";
 
-export function ProcessRow(props) {
+export default function ProcessRow(props) {
     return (
         <tr>
-            <td>Title</td>
-            <td>Description</td>
+            <td>{props.process.name}</td>
+            <td>{props.process.description}</td>
         </tr>
     );
 }
