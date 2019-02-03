@@ -4,7 +4,10 @@ export default function UserRow(props) {
     const editButtons = (
         <div>
             <button onClick={props.onEdit}>edit</button>
-            <button onClick={props.onDelete}>delete</button>
+            <button onClick={() => {
+                props.onDelete(props.id)
+            }}>delete
+            </button>
         </div>
     );
     const check = (

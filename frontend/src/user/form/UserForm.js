@@ -1,5 +1,6 @@
 import React from "react";
 import RoleSelect from "./RoleSelect";
+import {Link} from "react-router-dom";
 
 export default function UserForm(props) {
     return (
@@ -40,7 +41,9 @@ export default function UserForm(props) {
                 />
             </label>
             <button onClick={props.onAccept}>Accept</button>
-            <button>Cancel</button>
+            <Link to={props.onCancelPath}>
+                <button>Cancel</button>
+            </Link>
         </form>
     );
 }

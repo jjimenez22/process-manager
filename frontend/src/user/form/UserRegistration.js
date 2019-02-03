@@ -12,16 +12,18 @@ export default class UserRegistration extends React.Component {
             role: this.state.role,
             password: this.state.password
         };
-        restPost(BASE_PATH + '/admin', body, res =>
-            console.log("Successfully saved user: ", res)
-        );
+        const history = this.props.history;
+        restPost(BASE_PATH + '/admin', body, res => {
+            console.log("Successfully saved user: ", res);
+            history.push({pathname: '/'});
+        });
         e.preventDefault();
     };
 
     constructor(props) {
         super(props);
         this.state = {
-            role: "END_USER",
+            role: "ADMIN",
             username: '',
             firstName: '',
             lastName: '',
@@ -59,6 +61,7 @@ export default class UserRegistration extends React.Component {
                     });
                 }}
                 onAccept={this.handleClick}
+                onCancelPath={'/'}
             />
         );
     }

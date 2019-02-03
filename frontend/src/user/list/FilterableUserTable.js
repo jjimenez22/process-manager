@@ -1,12 +1,16 @@
 import React, {Component} from 'react';
 import UserTable from "./UserTable";
 import {BASE_PATH, restDelete, restGet} from "../../util/RestUtils";
+import {Link} from "react-router-dom";
 
 export default class FilterableUserTable extends Component {
 
     constructor(props) {
         super(props);
         this.state = {users: null};
+
+        this.fetchUsers = this.fetchUsers.bind(this);
+        this.deleteUser = this.deleteUser.bind(this);
     }
 
     getUserByHref = href => this.state.users.find(
@@ -21,8 +25,8 @@ export default class FilterableUserTable extends Component {
         });
     }
 
-    deleteUser(user) {
-        restDelete(user._links.self.href, this.fetchUsers);
+    deleteUser(href) {
+        restDelete(href, this.fetchUsers);
     }
 
     componentDidMount() {
@@ -32,7 +36,9 @@ export default class FilterableUserTable extends Component {
     render() {
         return (
             <div>
-                <button>Register</button>
+                <Link to="/register">
+                    <button>Register</button>
+                </Link>
                 <br/>
                 <UserTable
                     users={this.state.users}

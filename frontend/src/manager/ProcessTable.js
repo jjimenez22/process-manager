@@ -1,37 +1,45 @@
 import React, {Component} from "react";
 import ProcessRow from "./ProcessRow";
+import {BASE_PATH, restDelete, restGet} from "../util/RestUtils";
 
 export default class ProcessTable extends Component {
+
+    getProcessByHref = href => this.state.processes.find(
+        p => p._links.self.href === href
+    );
 
     constructor(props) {
         super(props);
         this.state = {
-            response: null,
+            processes: null,
         }
     }
 
-    componentDidMount() {
-        fetch("http://localhost:8080/api/processes")
-            .then(res => res.json())
-            .then(obj => {
-                this.setState({
-                    users: obj
-                })
+    fetchProcesses() {
+        restGet(BASE_PATH + "/processes", obj => {
+            this.setState({
+                processes: obj._embedded.processes
             })
-            .catch(e => {
-                console.error('Failed fetching data:', e);
-            });
+        });
+    }
+
+    deleteProcess(process) {
+        restDelete(process._links.self.href, this.fetchProcesses);
+    }
+
+    componentDidMount() {
+        this.fetchProcesses();
     }
 
     render() {
         const rows = [];
-        if (this.state.response) {
-            this.state.response._embedded.processes
-                .forEach((process) => {
+        if (this.state.processes) {
+            this.state.processes.forEach((process) => {
                     rows.push(
                         <ProcessRow
                             process={process}
-                            key={process._links.self.href}/>
+                            key={process._links.self.href}
+                        />
                     );
                 });
         }

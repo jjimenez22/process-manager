@@ -32,7 +32,7 @@ export function restGet(url, callback) {
             if (res.ok) {
                 return res.json();
             } else {
-                //todo throw exception with failed response to be caught by promise catch
+                throw new Error(res.status.toString());
             }
         })
         .then(callback)
@@ -51,12 +51,11 @@ export function restPost(url, body, callback) {
 export function restDelete(url, callback) {
     fetch(url, DELETE_INIT)
         .then(res => {
-            if (res.ok) {
-                callback();
-            } else {
-                //todo throw exception with failed response to be caught by promise's catch
+            if (!res.ok) {
+                throw new Error(res.status.toString());
             }
         })
+        .then(callback)
         .catch(e => {
             console.error('Failed deleting data: ', e);
         });
