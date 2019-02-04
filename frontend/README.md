@@ -8,4 +8,5 @@ Then run it with: `docker run -d -p 8080:8080 process-manager-frontend`
 
 ## NPM
 
+- Install dependencies with `npm install`
 - Run the app with `npm start`
