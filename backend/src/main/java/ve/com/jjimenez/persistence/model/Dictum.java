@@ -1,8 +1,6 @@
 package ve.com.jjimenez.persistence.model;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,8 +10,8 @@ import java.io.Serializable;
 
 @Entity
 @Data
-@EqualsAndHashCode(exclude = {"processes"})
-@ToString(exclude = {"processes"})
+//@EqualsAndHashCode(exclude = {"processes"})
+//@ToString(exclude = {"processes"})
 public class Dictum implements Serializable {
 
     @Id
