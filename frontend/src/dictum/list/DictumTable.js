@@ -21,7 +21,7 @@ export default function DictumTable(props) {
             <thead>
             <tr>
                 <th>Title</th>
-                <th>Description</th>
+                <th>Content</th>
             </tr>
             </thead>
             <tbody>{rows}</tbody>

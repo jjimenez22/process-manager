@@ -32,8 +32,8 @@ export default class DictumEdit extends Component {
                         dictum: dictum
                     })
                 }}
-                onDescriptionChange={e => {
-                    dictum.description = e.target.value;
+                onContentChange={e => {
+                    dictum.content = e.target.value;
                     this.setState({
                         dictum: dictum
                     })

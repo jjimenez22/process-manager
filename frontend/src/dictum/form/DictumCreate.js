@@ -7,7 +7,7 @@ export default class DictumCreate extends React.Component {
     handleClick = (e) => {
         const body = {
             title: this.state.title,
-            description: this.state.description,
+            content: this.state.content,
         };
         const history = this.props.history;
         restPost(BASE_PATH + '/dictums', body, res => {
@@ -21,7 +21,7 @@ export default class DictumCreate extends React.Component {
         super(props);
         this.state = {
             title: "",
-            description: "",
+            content: "",
         };
     }
 
@@ -33,9 +33,9 @@ export default class DictumCreate extends React.Component {
                         title: e.target.value
                     })
                 }}
-                onDescriptionChange={e => {
+                onContentChange={e => {
                     this.setState({
-                        description: e.target.value
+                        content: e.target.value
                     })
                 }}
                 onAccept={this.handleClick}

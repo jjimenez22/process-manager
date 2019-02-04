@@ -14,7 +14,7 @@ export default function DictumRow(props) {
     return (
         <tr>
             <td>{props.dictum.title}</td>
-            <td>{props.dictum.description}</td>
+            <td>{props.dictum.content}</td>
             <td>{editButtons}</td>
         </tr>
     );

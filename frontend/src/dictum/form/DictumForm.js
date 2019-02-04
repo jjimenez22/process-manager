@@ -14,9 +14,9 @@ export default function DictumForm(props) {
                 />
             </label>
             <label>
-                Description:
-                <textarea value={dictum.description}
-                          onChange={props.onDescriptionChange}
+                Content:
+                <textarea value={dictum.content}
+                          onChange={props.onContentChange}
                 />
             </label>
             <button onClick={props.onAccept}>Accept</button>
