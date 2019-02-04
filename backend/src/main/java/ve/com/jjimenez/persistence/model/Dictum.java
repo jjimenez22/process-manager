@@ -4,9 +4,11 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.io.Serializable;
-import java.util.Set;
 
 @Entity
 @Data
@@ -24,7 +26,7 @@ public class Dictum implements Serializable {
     @Column(nullable = false)
     private String content;
 
-    @ManyToMany(mappedBy = "dictums", fetch = FetchType.EAGER)
-    private Set<Process> processes;
+//    @ManyToMany(mappedBy = "dictums", fetch = FetchType.EAGER)
+//    private Set<Process> processes;
 }
 
