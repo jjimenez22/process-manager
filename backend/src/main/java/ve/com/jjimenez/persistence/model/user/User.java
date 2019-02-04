@@ -1,5 +1,6 @@
 package ve.com.jjimenez.persistence.model.user;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -29,15 +30,13 @@ public class User implements Serializable {
     private String lastName;
 
     @Column(nullable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @Column(nullable = false)
     private String role;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "user_process",
-            joinColumns = @JoinColumn(name = "process_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
+    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
     private Set<Process> processes;
 
 }

@@ -25,7 +25,10 @@ public class Process implements Serializable {
     @Column
     private String description;
 
-    @ManyToMany(mappedBy = "processes", fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_process",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "process_id", referencedColumnName = "id"))
     private Set<User> users;
 
     @ManyToMany(cascade = CascadeType.ALL)
