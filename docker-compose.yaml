@@ -1,0 +1,29 @@
+version: '3.1'
+
+services:
+  # Spring App
+  backend:
+    build:
+      context: ./backend
+    image: jj-process-manager-backend
+    container_name: jj-process-manager-backend
+    restart: always
+    ports:
+      - 8080:8080
+      - 8000:8000
+    environment:
+      - "ES_JAVA_OPTS=-Xms1g -Xmx3g"
+
+  # React app
+  frontend:
+    build:
+      context: ./frontend
+    image: jj-process-manager-frontend
+    container_name: jj-process-manager-frontend
+    restart: always
+    ports:
+      - 3000:80
+    depends_on:
+      - backend
+    links:
+      - backend
