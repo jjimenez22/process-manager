@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {restGet, restPut, restPutUris} from "../../commons/RestUtils";
 import ProcessForm from "./ProcessForm";
+import {PROCESS} from "../../commons/routes";
 
 export default class ProcessEdit extends Component {
 
@@ -12,7 +13,7 @@ export default class ProcessEdit extends Component {
             console.log("Successfully saved process: ", res);
             restPutUris(res._links.users.href, container, put => {
                 console.log("Successfully saved users into process: ", put);
-                history.push({pathname: '/'});
+                history.push({pathname: PROCESS});
             });
         });
         e.preventDefault();
@@ -83,7 +84,7 @@ export default class ProcessEdit extends Component {
                 selected={this.state.container}
                 onCheck={this.handleCheck}
                 onAccept={this.handleClick}
-                onCancelPath={'/'}
+                onCancelPath={PROCESS}
             />
         );
     }

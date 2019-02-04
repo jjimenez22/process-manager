@@ -1,6 +1,7 @@
 import React from "react";
 import UserForm from "./UserForm";
 import {BASE_PATH, restPost} from "../../commons/RestUtils";
+import {USER} from "../../commons/routes";
 
 export default class UserRegistration extends React.Component {
 
@@ -26,7 +27,7 @@ export default class UserRegistration extends React.Component {
         const history = this.props.history;
         restPost(BASE_PATH + '/admin', body, res => {
             console.log("Successfully saved user: ", res);
-            history.push({pathname: '/'});
+            history.push({pathname: USER});
         });
         e.preventDefault();
     };
@@ -60,7 +61,7 @@ export default class UserRegistration extends React.Component {
                     });
                 }}
                 onAccept={this.handleClick}
-                onCancelPath={'/'}
+                onCancelPath={USER}
             />
         );
     }

@@ -1,13 +1,10 @@
 import React, {Component} from "react";
-import ProcessTable from "./list/ProcessTable";
-import {BASE_PATH, restDelete, restGet} from "../commons/RestUtils";
+import ProcessTable from "./ProcessTable";
+import {BASE_PATH, restDelete, restGet} from "../../commons/RestUtils";
 import {Link} from "react-router-dom";
+import {PROCESS_CREATE} from "../../commons/routes";
 
 export default class FilterableProcessTable extends Component {
-
-    getProcessByHref = href => this.state.processes.find(
-        p => p._links.self.href === href
-    );
 
     constructor(props) {
         super(props);
@@ -36,7 +33,7 @@ export default class FilterableProcessTable extends Component {
     render() {
         return (
             <div>
-                <Link to="/process/create">
+                <Link to={PROCESS_CREATE}>
                     <button>Create New</button>
                 </Link>
                 <br/>

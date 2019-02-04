@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {restPut} from "../../commons/RestUtils";
 import UserForm from "./UserForm";
+import {USER} from "../../commons/routes";
 
 export default class UserEdit extends Component {
 
@@ -9,7 +10,7 @@ export default class UserEdit extends Component {
         const history = this.props.history;
         restPut(body._links.self.href, body, res => {
             console.log("Successfully saved user: ", res);
-            history.push({pathname: '/'});
+            history.push({pathname: USER});
         });
         e.preventDefault();
     };
@@ -17,7 +18,7 @@ export default class UserEdit extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: this.props.location.state.process
+            user: this.props.location.state.user
         };
 
     }
@@ -58,7 +59,7 @@ export default class UserEdit extends Component {
                     })
                 }}
                 onAccept={this.handleClick}
-                onCancelPath={'/'}
+                onCancelPath={USER}
             />
         );
     }
