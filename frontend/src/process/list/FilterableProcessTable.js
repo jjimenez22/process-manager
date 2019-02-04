@@ -5,10 +5,6 @@ import {Link} from "react-router-dom";
 
 export default class FilterableProcessTable extends Component {
 
-    getProcessByHref = href => this.state.processes.find(
-        p => p._links.self.href === href
-    );
-
     constructor(props) {
         super(props);
         this.state = {processes: null};

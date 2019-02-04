@@ -18,10 +18,6 @@ export default class FilterableUserTable extends Component {
         this.deleteUser = this.deleteUser.bind(this);
     }
 
-    getUserByHref = href => this.state.users.find(
-        u => u._links.self.href === href
-    );
-
     fetchUsers() {
         restGet(BASE_PATH + "/users", obj => {
             this.setState({
