@@ -1,54 +1,37 @@
-import React, {Component} from 'react';
+import React from 'react';
+import {Link} from "react-router-dom";
+import FilterableUserTable from "../../user/list/FilterableUserTable";
 
-export default class ProcessForm extends Component {
-    handleClick = (e) => {
-        const body = {
-            name: this.state.name,
-            description: this.state.description,
-        };
-        fetch('http://localhost:8080/api/processes', {
-            method: 'POST',
-            body: JSON.stringify(body),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(res => res.json())
-            .then(res => console.log("Successfully saved process: ", res))
-            .catch(e => console.error("Error: ", e));
-        e.preventDefault();
-    };
+export default function ProcessForm(props) {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            name: "",
-            description: ""
-        };
-    }
+    const process = props.process ? props.process : {};
 
-    render() {
-        return (
-            <form>
-                <label>
-                    Name:
-                    <input type="text" value={this.state.name}
-                           onChange={event => {
-                               this.setState({name: event.target.value})
-                           }}
-                    />
-                </label>
-                <label>
-                    Description:
-                    <textarea value={this.state.description}
-                              onChange={event => {
-                                  this.setState({description: event.target.value})
-                              }}
-                    />
-                </label>
-                <button onClick={this.handleClick}>Accept</button>
+    return (
+        <form>
+            <label>
+                Name:
+                <input type="text" value={process.name}
+                       onChange={props.onNameChange}
+                />
+            </label>
+            <label>
+                Description:
+                <textarea value={process.description}
+                          onChange={props.onDescriptionChange}
+                />
+            </label>
+            <br/>
+            <FilterableUserTable
+                isEdit={false}
+                isChecked={props.isChecked}
+                selected={props.selected}
+                onCheck={props.onCheck}
+            />
+            <br/>
+            <button onClick={props.onAccept}>Accept</button>
+            <Link to={props.onCancelPath}>
                 <button>Cancel</button>
-            </form>
-        )
-    }
+            </Link>
+        </form>
+    )
 }

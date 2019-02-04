@@ -1,56 +1,30 @@
-import React, {Component} from "react";
+import React from "react";
 import ProcessRow from "./ProcessRow";
-import {BASE_PATH, restDelete, restGet} from "../../util/RestUtils";
 
-export default class ProcessTable extends Component {
-
-    getProcessByHref = href => this.state.processes.find(
-        p => p._links.self.href === href
-    );
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            processes: null,
-        }
-    }
-
-    fetchProcesses() {
-        restGet(BASE_PATH + "/processes", obj => {
-            this.setState({
-                processes: obj._embedded.processes
-            })
+export default function ProcessTable(props) {
+    const rows = [];
+    if (props.processes) {
+        props.processes.forEach((process) => {
+            let href = process._links.self.href;
+            rows.push(
+                <ProcessRow
+                    process={process}
+                    key={href}
+                    id={href}
+                    onDelete={props.onDelete}
+                />
+            );
         });
     }
-
-    deleteProcess(process) {
-        restDelete(process._links.self.href, this.fetchProcesses);
-    }
-
-    componentDidMount() {
-        this.fetchProcesses();
-    }
-
-    render() {
-        const rows = [];
-        if (this.state.processes) {
-            this.state.processes.forEach((process) => {
-                    rows.push(
-                        <ProcessRow
-                            process={process}
-                            key={process._links.self.href}
-                        />
-                    );
-                });
-        }
-        return (
-            <table>
-                <thead>
+    return (
+        <table>
+            <thead>
+            <tr>
                 <th>Name</th>
                 <th>Description</th>
-                </thead>
-                <tbody>{rows}</tbody>
-            </table>
-        );
-    }
+            </tr>
+            </thead>
+            <tbody>{rows}</tbody>
+        </table>
+    );
 }
