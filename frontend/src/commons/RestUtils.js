@@ -35,6 +35,28 @@ function PUT_INIT(body) {
     };
 }
 
+function PUT_INIT_TEXT(body) {
+    return {
+        method: 'PUT',
+        body: uriList(body),
+        headers:
+            {
+                'Accept':
+                    'application/json',
+                'Content-Type':
+                    'text/uri-list'
+            }
+    };
+}
+
+function uriList(uris) {
+    let result = "";
+    uris.forEach(uri => {
+        result += uri + '\n'
+    });
+    return result;
+}
+
 const DELETE_INIT = {
     method: 'DELETE',
     headers: new Headers()
@@ -65,6 +87,12 @@ export function restPost(url, body, callback) {
 export function restPut(url, body, callback) {
     fetch(url, PUT_INIT(body))
         .then(res => res.json())
+        .then(callback)
+        .catch(e => console.error("Failed putting data: ", e));
+}
+
+export function restPutUris(url, body, callback) {
+    fetch(url, PUT_INIT_TEXT(body))
         .then(callback)
         .catch(e => console.error("Failed putting data: ", e));
 }
