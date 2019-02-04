@@ -1,6 +1,6 @@
 import React from "react";
 import UserForm from "./UserForm";
-import {BASE_PATH, restPost} from "../../util/RestUtils";
+import {BASE_PATH, restPost} from "../../commons/RestUtils";
 
 export default class UserRegistration extends React.Component {
 
@@ -13,7 +13,6 @@ export default class UserRegistration extends React.Component {
             lastName: '',
             password: '',
         };
-
     }
 
     handleClick = (e) => {

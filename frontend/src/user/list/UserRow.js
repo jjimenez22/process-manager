@@ -1,36 +1,45 @@
-import React from "react";
-import {Link} from "react-router-dom";
+import React, {Component} from "react";
+import EditDeleteButtons from "../../commons/EditDeleteButtons";
 
-export default function UserRow(props) {
-    const editButtons = (
-        <div>
-            <Link to={{
-                pathname: '/user/edit', state: {
-                    user: props.user
-                }
-            }}>
-                <button>edit</button>
-            </Link>
-            <button onClick={() => {
-                props.onDelete(props.id)
-            }}>delete
-            </button>
-        </div>
-    );
-    const check = (
-        <input
-            type="checkbox"
-            checked={props.isChecked}
-            onChange={props.onChange}
-        />
-    );
-    return (
-        <tr>
-            <td>{props.user.username}</td>
-            <td>{props.user.firstName}</td>
-            <td>{props.user.lastName}</td>
-            <td>{props.user.role}</td>
-            <td>{props.isEdit ? editButtons : check}</td>
-        </tr>
-    );
+export default class UserRow extends Component {
+
+    isChecked = () => {
+        return this.props.isChecked(this.href);
+    };
+    handleChange = (e) => {
+        this.props.onCheck(e, this.href);
+    };
+
+    constructor(props) {
+        super(props);
+        this.href = props.user._links.self.href;
+    }
+
+    render() {
+        const editButtons = (
+            <EditDeleteButtons
+                editPath="/user/edit"
+                editState={{user: this.props.user}}
+                onDelete={() => {
+                    this.props.onDelete(this.props.id)
+                }}
+            />
+        );
+        const check = (
+            <input
+                type="checkbox"
+                checked={this.props.isChecked}
+                onChange={this.handleChange}
+            />
+        );
+        return (
+            <tr>
+                <td>{this.props.user.username}</td>
+                <td>{this.props.user.firstName}</td>
+                <td>{this.props.user.lastName}</td>
+                <td>{this.props.user.role}</td>
+                <td>{this.props.isEdit ? editButtons : check}</td>
+            </tr>
+        );
+    }
 }

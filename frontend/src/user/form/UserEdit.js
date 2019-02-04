@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {restPut} from "../../util/RestUtils";
+import {restPut} from "../../commons/RestUtils";
 import UserForm from "./UserForm";
 
 export default class UserEdit extends Component {
@@ -17,7 +17,7 @@ export default class UserEdit extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: this.props.location.state.user
+            user: this.props.location.state.process
         };
 
     }
@@ -30,31 +30,31 @@ export default class UserEdit extends Component {
                 onUsernameChange={e => {
                     user.username = e.target.value;
                     this.setState({
-                        user: user
+                        process: user
                     })
                 }}
                 onFirstNameChange={e => {
                     user.firstName = e.target.value;
                     this.setState({
-                        user: user
+                        process: user
                     })
                 }}
                 onLastNameChange={e => {
                     user.lastName = e.target.value;
                     this.setState({
-                        user: user
+                        process: user
                     })
                 }}
                 onPasswordChange={e => {
                     user.password = e.target.value;
                     this.setState({
-                        user: user
+                        process: user
                     })
                 }}
                 onRoleChange={e => {
                     user.role = e.target.value;
                     this.setState({
-                        user: user
+                        process: user
                     })
                 }}
                 onAccept={this.handleClick}
