@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {BASE_PATH, restDelete, restGet} from "../../commons/RestUtils";
 import {Link} from "react-router-dom";
 import DictumTable from "./DictumTable";
+import {DICTUM_CREATE} from "../../commons/routes";
 
 export default class FilterableDictumTable extends Component {
 
@@ -32,7 +33,7 @@ export default class FilterableDictumTable extends Component {
     render() {
         return (
             <div>
-                <Link to="/dictum/create">
+                <Link to={DICTUM_CREATE}>
                     <button>Create New</button>
                 </Link>
                 <br/>

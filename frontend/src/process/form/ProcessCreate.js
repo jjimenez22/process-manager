@@ -1,6 +1,7 @@
 import React from "react";
 import {BASE_PATH, restPost, restPutUris} from "../../commons/RestUtils";
 import ProcessForm from "./ProcessForm";
+import {PROCESS} from "../../commons/routes";
 
 export default class ProcessCreate extends React.Component {
 
@@ -15,7 +16,7 @@ export default class ProcessCreate extends React.Component {
             console.log("Successfully saved process: ", res);
             restPutUris(res._links.users.href, container, put => {
                 console.log("Successfully saved users into process: ", put);
-                history.push({pathname: '/'});
+                history.push({pathname: PROCESS});
             });
         });
         e.preventDefault();
@@ -68,7 +69,7 @@ export default class ProcessCreate extends React.Component {
                 selected={this.state.container}
                 onCheck={this.handleCheck}
                 onAccept={this.handleClick}
-                onCancelPath={'/'}
+                onCancelPath={PROCESS}
             />
         );
     }

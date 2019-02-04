@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {restPut} from "../../commons/RestUtils";
 import DictumForm from "./DictumForm";
+import {DICTUM} from "../../commons/routes";
 
 export default class DictumEdit extends Component {
 
@@ -9,7 +10,7 @@ export default class DictumEdit extends Component {
         const history = this.props.history;
         restPut(body._links.self.href, body, res => {
             console.log("Successfully saved dictum: ", res);
-            history.push({pathname: '/'});
+            history.push({pathname: DICTUM});
         });
         e.preventDefault();
     };
@@ -39,7 +40,7 @@ export default class DictumEdit extends Component {
                     })
                 }}
                 onAccept={this.handleClick}
-                onCancelPath={'/'}
+                onCancelPath={DICTUM}
             />
         );
     }

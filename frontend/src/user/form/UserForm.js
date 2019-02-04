@@ -3,7 +3,7 @@ import RoleSelect from "./RoleSelect";
 import {Link} from "react-router-dom";
 
 export default function UserForm(props) {
-    const user = props.process ? props.process : {};
+    const user = props.user ? props.user : {};
     return (
         <form>
             <label>

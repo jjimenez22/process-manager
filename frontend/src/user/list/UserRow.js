@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import EditDeleteButtons from "../../commons/EditDeleteButtons";
+import {USER_EDIT} from "../../commons/routes";
 
 export default class UserRow extends Component {
 
@@ -18,7 +19,7 @@ export default class UserRow extends Component {
     render() {
         const editButtons = (
             <EditDeleteButtons
-                editPath="/user/edit"
+                editPath={USER_EDIT}
                 editState={{user: this.props.user}}
                 onDelete={() => {
                     this.props.onDelete(this.props.id)

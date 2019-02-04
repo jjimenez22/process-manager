@@ -1,6 +1,7 @@
 import React from "react";
 import {BASE_PATH, restPost} from "../../commons/RestUtils";
 import DictumForm from "./DictumForm";
+import {DICTUM} from "../../commons/routes";
 
 export default class DictumCreate extends React.Component {
 
@@ -12,7 +13,7 @@ export default class DictumCreate extends React.Component {
         const history = this.props.history;
         restPost(BASE_PATH + '/dictums', body, res => {
             console.log("Successfully saved dictum: ", res);
-            history.push({pathname: '/'});
+            history.push({pathname: DICTUM});
         });
         e.preventDefault();
     };
@@ -39,7 +40,7 @@ export default class DictumCreate extends React.Component {
                     })
                 }}
                 onAccept={this.handleClick}
-                onCancelPath={'/'}
+                onCancelPath={DICTUM}
             />
         );
     }

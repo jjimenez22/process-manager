@@ -1,10 +1,11 @@
 import React from "react";
 import EditDeleteButtons from "../../commons/EditDeleteButtons";
+import {DICTUM_EDIT} from "../../commons/routes";
 
 export default function DictumRow(props) {
     const editButtons = (
         <EditDeleteButtons
-            editPath="/dictum/edit"
+            editPath={DICTUM_EDIT}
             editState={{dictum: props.dictum}}
             onDelete={() => {
                 props.onDelete(props.id)
