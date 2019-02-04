@@ -3,7 +3,7 @@ import './App.css';
 import {Route} from "react-router";
 import UserRegistration from "./user/form/UserRegistration";
 import UserEdit from "./user/form/UserEdit";
-import FilterableProcessTable from "./process/FilterableProcessTable";
+import FilterableProcessTable from "./process/list/FilterableProcessTable";
 import ProcessCreate from "./process/form/ProcessCreate";
 import {PROCESS_CREATE, PROCESS_EDIT, USER_EDIT, USER_REGISTER} from "./commons/routes";
 import ProcessEdit from "./process/form/ProcessEdit";
