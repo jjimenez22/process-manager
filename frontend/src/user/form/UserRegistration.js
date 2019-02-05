@@ -5,17 +5,6 @@ import {USER} from "../../commons/routes";
 
 export default class UserRegistration extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            role: "ADMIN",
-            username: '',
-            firstName: '',
-            lastName: '',
-            password: '',
-        };
-    }
-
     handleClick = (e) => {
         const body = {
             username: this.state.username,
@@ -28,9 +17,22 @@ export default class UserRegistration extends React.Component {
         restPost(BASE_PATH + '/admin', body, res => {
             console.log("Successfully saved user: ", res);
             history.push({pathname: USER});
+        }, errroMessage => {
+            alert(errroMessage)
         });
         e.preventDefault();
     };
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            role: "ADMIN",
+            username: '',
+            firstName: '',
+            lastName: '',
+            password: ''
+        };
+    }
 
     render() {
         return (

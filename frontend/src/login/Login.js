@@ -1,14 +1,16 @@
-import {LoginForm} from "./LoginForm";
-import React from "react";
+import LoginForm from "./LoginForm";
+import React, {Component} from "react";
 
-export function Login(props) {
-    return (
-        <div>
-            <LoginForm/>
-            <br/>
-            <button>
-                Login
-            </button>
-        </div>
-    );
+export default class Login extends Component {
+
+    onLogin = (e) => {
+        e.preventDefault();
+        alert("Hice click")
+    };
+
+    render() {
+        return (
+            <LoginForm onClick={this.onLogin}/>
+        );
+    }
 }

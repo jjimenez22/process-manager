@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import UserRow from "./UserRow";
+import Table from "../../commons/Table"
+import "./listStyle.css"
 
 export default class UserTable extends Component {
 
@@ -14,35 +16,24 @@ export default class UserTable extends Component {
     }
 
     render() {
-        const rows = [];
-        if (this.props.users) {
-            this.props.users.forEach((user) => {
-                let href = user._links.self.href;
-                rows.push(
-                    <UserRow
-                        user={user}
-                        key={href}
-                        id={href}
-                        isEdit={this.props.isEdit}
-                        onDelete={this.props.onDelete}
-                        isChecked={this.isUserChecked(href)}
-                        onCheck={this.props.onCheck}
-                    />
-                );
-            });
-        }
+        const headerTable = ["Username", "First Name", "Last Name", "Type", "Action"];
         return (
-            <table>
-                <thead>
-                <tr>
-                    <th>Username</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Type</th>
-                </tr>
-                </thead>
-                <tbody>{rows}</tbody>
-            </table>
+            <Table header={headerTable}>
+                {
+                    this.props.users &&
+                    this.props.users.map(user => (
+                        <UserRow
+                            user={user}
+                            key={user._links.self.href}
+                            id={user._links.self.href}
+                            isEdit={this.props.isEdit}
+                            onDelete={this.props.onDelete}
+                            isChecked={this.isUserChecked(user._links.self.href)}
+                            onCheck={this.props.onCheck}
+                        />
+                    ))
+                }
+            </Table>
         );
     }
 }

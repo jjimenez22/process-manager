@@ -1,9 +1,14 @@
 import React, {Component} from "react";
 import EditDeleteButtons from "../../commons/EditDeleteButtons";
 import {USER_EDIT} from "../../commons/routes";
+import Row from "../../commons/Row";
 
 export default class UserRow extends Component {
 
+    constructor(props) {
+        super(props);
+        this.href = props.user._links.self.href;
+    }
     isChecked = () => {
         return this.props.isChecked(this.href);
     };
@@ -11,12 +16,9 @@ export default class UserRow extends Component {
         this.props.onCheck(e, this.href);
     };
 
-    constructor(props) {
-        super(props);
-        this.href = props.user._links.self.href;
-    }
-
     render() {
+        const prop = this.props.user;
+
         const editButtons = (
             <EditDeleteButtons
                 editPath={USER_EDIT}
@@ -33,14 +35,12 @@ export default class UserRow extends Component {
                 onChange={this.handleChange}
             />
         );
+
+        const row = [prop.username, prop.firstName, prop.lastName, prop.role]
         return (
-            <tr>
-                <td>{this.props.user.username}</td>
-                <td>{this.props.user.firstName}</td>
-                <td>{this.props.user.lastName}</td>
-                <td>{this.props.user.role}</td>
-                <td>{this.props.isEdit ? editButtons : check}</td>
-            </tr>
+            <Row rows={row}>
+                {this.props.isEdit ? editButtons : check}
+            </Row>
         );
     }
 }
