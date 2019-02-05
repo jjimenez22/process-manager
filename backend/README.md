@@ -18,4 +18,4 @@ Run the app with: `mvn spring-boot:run`
 
 ## Docs
 
-- Swagger: `$BASE_URL/swagger-ui.html` (Example: `localhost:8080/api/swagger-ui.html`)
+- Swagger: `$BASE_URL/swagger-ui.html` (Example: `localhost:8080/swagger-ui.html`)

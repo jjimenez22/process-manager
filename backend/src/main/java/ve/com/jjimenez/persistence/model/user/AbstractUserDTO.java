@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
@@ -17,10 +16,8 @@ abstract class AbstractUserDTO {
     private String lastName;
 
     @NotNull
-    @NotEmpty
     private String username;
 
     @NotNull
-    @NotEmpty
     private String role;
 }

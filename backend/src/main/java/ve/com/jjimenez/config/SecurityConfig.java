@@ -46,8 +46,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(restAuthenticationEntryPoint)
                 .and()
                 .authorizeRequests()/*.anyRequest().permitAll();*/
+                .antMatchers("/api", "/api/profile", "/login*", "**/swagger-ui.html", "**/v2/api-docs").permitAll()
                 .antMatchers("/api/admin/**").hasAuthority(ADMIN)
-                .antMatchers("/api/users/**").hasAnyAuthority(ADMIN, MANAGER)
+                .antMatchers("/api/users/**").hasAnyAuthority(ADMIN, MANAGER, END_USER)
                 .antMatchers("/api/processes/**").hasAnyAuthority(MANAGER, END_USER)
                 .antMatchers("/api/dictums/**").hasAuthority(END_USER)
                 .and()
