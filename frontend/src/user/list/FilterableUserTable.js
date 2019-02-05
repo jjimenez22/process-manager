@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import UserTable from "./UserTable";
-import {BASE_PATH, restDelete, restGet} from "../../commons/RestUtils";
+import {BASE_PATH, restDelete, restGet, USER_BY_ROLE_PATH} from "../../commons/RestUtils";
 import {Link} from "react-router-dom";
 import {USER_REGISTER} from "../../commons/routes";
 import UniversalButton from "../../commons/UniversalButton";
@@ -18,12 +18,14 @@ export default class FilterableUserTable extends Component {
             this.isEdit = props.idEdit;
         }
 
+        this.url = this.props.isProcess ? USER_BY_ROLE_PATH : BASE_PATH + "/users";
+
         this.fetchUsers = this.fetchUsers.bind(this);
         this.deleteUser = this.deleteUser.bind(this);
     }
 
     fetchUsers() {
-        restGet(BASE_PATH + "/users", obj => {
+        restGet(this.url, obj => {
             this.setState({
                 users: obj._embedded.users
             })
@@ -54,14 +56,14 @@ export default class FilterableUserTable extends Component {
                     }
 
                     {/*The table that list the users*/}
-                <UserTable
-                    users={this.state.users}
-                    isEdit={this.isEdit}
-                    onDelete={this.deleteUser}
-                    isChecked={this.props.isChecked}
-                    selected={this.props.selected}
-                    onCheck={this.props.onCheck}
-                />
+                    <UserTable
+                        users={this.state.users}
+                        isEdit={this.isEdit}
+                        onDelete={this.deleteUser}
+                        isChecked={this.props.isChecked}
+                        selected={this.props.selected}
+                        onCheck={this.props.onCheck}
+                    />
                 </div>
             </div>
         );

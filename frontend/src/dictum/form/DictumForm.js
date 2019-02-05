@@ -20,7 +20,10 @@ export default function DictumForm(props) {
                 />
             </label>
             <button onClick={props.onAccept}>Accept</button>
-            <Link to={props.onCancelPath}>
+            <Link to={{
+                pathname: props.onCancelPath,
+                state: {currentUser: props.currentUser}
+            }}>
                 <button>Cancel</button>
             </Link>
         </form>

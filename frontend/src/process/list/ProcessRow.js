@@ -27,7 +27,8 @@ export default function ProcessRow(props) {
             pathname: DICTUM_FORM,
             state: {
                 userHref: props.userHref,
-                process: props.process
+                process: props.process,
+                currentUser: props.currentUser
             }
         }}>
             <button>Comment</button>

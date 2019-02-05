@@ -7,7 +7,8 @@ export default class DictumProcessTable extends Component {
     constructor(props) {
         super(props);
         this.state = {processes: null};
-        this.href = /*this.props.location.state.user._links.self.href*/"http://localhost:8080/api/users/1";
+        this.currentUser = this.props.location.state.currentUser;
+        this.href = this.currentUser._links.self.href;
 
         this.fetchProcesses = this.fetchProcesses.bind(this);
     }
@@ -31,6 +32,7 @@ export default class DictumProcessTable extends Component {
                     processes={this.state.processes}
                     isDictum={true}
                     userHref={this.href}
+                    currentUser={this.currentUser}
                 />
             </div>
         );

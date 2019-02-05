@@ -1,5 +1,6 @@
 export const BASE_URI = "http://localhost:8080";
 export const BASE_PATH = BASE_URI + "/api";
+export const USER_BY_ROLE_PATH = BASE_PATH + "/users/search/findAllByRole?role=END_USER";
 
 const GET_INIT = {
     method: 'GET',
@@ -94,16 +95,17 @@ export function restPost(url, body, callback, failed) {
         .then(callback)
         .catch(e => {
             console.error("Failed posting data: ", e);
-            failed("An error ocured saving data")
+            failed("An error ocured saving data");
         });
 }
 
-export function restPostNoBody(url, callback) {
+export function restPostNoBody(url, callback, failed) {
     fetch(url, POST_INIT_NO_BODY)
         .then(callback)
         // .then(callback)
         .catch(e => {
             console.error("Failed posting data: ", e);
+            failed();
         });
 }
 

@@ -26,6 +26,7 @@ export default function ProcessForm(props) {
                 isChecked={props.isChecked}
                 selected={props.selected}
                 onCheck={props.onCheck}
+                isProcess={true}
             />
             <br/>
             <button onClick={props.onAccept}>Accept</button>
