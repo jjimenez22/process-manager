@@ -18,6 +18,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    public static final String ADMIN = "ADMIN";
+    public static final String MANAGER = "MANAGER";
+    public static final String END_USER = "END_USER";
     private final SavedRequestAwareAuthenticationSuccessHandler successHandler =
             new SavedRequestAwareAuthenticationSuccessHandler();
     private final SimpleUrlAuthenticationFailureHandler failureHandler = new SimpleUrlAuthenticationFailureHandler();
@@ -42,16 +45,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                 .authenticationEntryPoint(restAuthenticationEntryPoint)
                 .and()
-                .authorizeRequests().anyRequest().permitAll();
-//                .antMatchers("/api/user/**").hasAuthority("ADMIN")
-//                .antMatchers("/api/process/**").hasAuthority("MANAGER")
-//                .antMatchers("/api/conclusion/**").hasAuthority("ENDER")//todo right translation
-//                .and()
-//                .formLogin()
-//                .successHandler(successHandler)
-//                .failureHandler(failureHandler)
-//                .and()
-//                .logout();
+                .authorizeRequests()/*.anyRequest().permitAll();*/
+                .antMatchers("/api/admin/**").hasAuthority(ADMIN)
+                .antMatchers("/api/users/**").hasAnyAuthority(ADMIN, MANAGER)
+                .antMatchers("/api/processes/**").hasAnyAuthority(MANAGER, END_USER)
+                .antMatchers("/api/dictums/**").hasAuthority(END_USER)
+                .and()
+                .formLogin()
+                .successHandler(successHandler)
+                .failureHandler(failureHandler)
+                .and()
+                .logout();
     }
 
     @Bean

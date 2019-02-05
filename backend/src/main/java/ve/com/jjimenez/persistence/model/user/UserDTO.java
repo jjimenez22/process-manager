@@ -15,8 +15,4 @@ public class UserDTO extends AbstractUserDTO {
     @NotNull
     @NotEmpty
     private String password;
-
-    @NotNull
-    @NotEmpty
-    private String matchingPassword;
 }
