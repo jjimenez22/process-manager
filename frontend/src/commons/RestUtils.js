@@ -1,7 +1,9 @@
-export const BASE_PATH = "http://localhost:8080/api";
+export const BASE_URI = "http://localhost:8080";
+export const BASE_PATH = BASE_URI + "/api";
 
 const GET_INIT = {
     method: 'GET',
+    credentials: 'include',
     headers: {
         'Accept': 'application/json'
     }
@@ -10,6 +12,7 @@ const GET_INIT = {
 function POST_INIT(body) {
     return {
         method: 'POST',
+        credentials: 'include',
         body: JSON.stringify(body),
         headers:
             {
@@ -21,9 +24,15 @@ function POST_INIT(body) {
     };
 }
 
+const POST_INIT_NO_BODY = {
+    method: 'POST',
+    credentials: 'include'
+};
+
 function PUT_INIT(body) {
     return {
         method: 'PUT',
+        credentials: 'include',
         body: JSON.stringify(body),
         headers:
             {
@@ -38,6 +47,7 @@ function PUT_INIT(body) {
 function PUT_INIT_TEXT(body) {
     return {
         method: 'PUT',
+        credentials: 'include',
         body: uriList(body),
         headers:
             {
@@ -59,6 +69,7 @@ function uriList(uris) {
 
 const DELETE_INIT = {
     method: 'DELETE',
+    credentials: 'include',
     headers: new Headers()
 };
 
@@ -82,8 +93,17 @@ export function restPost(url, body, callback, failed) {
         .then(res => res.json())
         .then(callback)
         .catch(e => {
-            console.error("Failed posting data: ", e)
+            console.error("Failed posting data: ", e);
             failed("An error ocured saving data")
+        });
+}
+
+export function restPostNoBody(url, callback) {
+    fetch(url, POST_INIT_NO_BODY)
+        .then(callback)
+        // .then(callback)
+        .catch(e => {
+            console.error("Failed posting data: ", e);
         });
 }
 

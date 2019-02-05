@@ -23,7 +23,7 @@ export default function LoginForm(props) {
             icon: true,
             iconClass: "fas fa-key"
         }
-    ]
+    ];
 
 
     return (
