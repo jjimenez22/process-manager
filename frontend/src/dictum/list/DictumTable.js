@@ -1,5 +1,7 @@
 import React from "react";
 import DictumRow from "./DictumRow";
+import {PROCESS} from "../../commons/routes";
+import {Link} from "react-router-dom";
 
 export default function DictumTable(props) {
     const rows = [];
@@ -10,21 +12,24 @@ export default function DictumTable(props) {
                 <DictumRow
                     dictum={dictum}
                     key={href}
-                    id={href}
-                    onDelete={props.onDelete}
                 />
             );
         });
     }
     return (
-        <table>
-            <thead>
-            <tr>
-                <th>Title</th>
-                <th>Content</th>
-            </tr>
-            </thead>
-            <tbody>{rows}</tbody>
-        </table>
+        <div>
+            <Link to={PROCESS}>
+                <button>Back</button>
+            </Link>
+            <table>
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Content</th>
+                </tr>
+                </thead>
+                <tbody>{rows}</tbody>
+            </table>
+        </div>
     );
 }

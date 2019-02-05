@@ -38,8 +38,8 @@ class App extends Component {
                 <Route exact path={PROCESS_EDIT} component={ProcessEdit}/>
 
                 <Route exact path={DICTUM} component={DictumProcessTable}/>
-                <Route exact path={DICTUM_LIST} component={FilterableDictumTable}/>
                 <Route exact path={DICTUM_FORM} component={DictumEditOrCreate}/>
+                <Route exact path={DICTUM_LIST} component={FilterableDictumTable}/>
             </div>
         );
     }
