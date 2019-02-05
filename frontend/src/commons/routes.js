@@ -6,6 +6,6 @@ export const PROCESS = "/process";
 export const PROCESS_CREATE = "/process/create";
 export const PROCESS_EDIT = "/process/edit";
 
-export const DICTUM = "/dictum";
-export const DICTUM_CREATE = "/dictum/create";
-export const DICTUM_EDIT = "/dictum/edit";
+export const DICTUM = "/user/processes";
+export const DICTUM_LIST = "/user/processes/dictums";
+export const DICTUM_FORM = "/user/processes/comment";

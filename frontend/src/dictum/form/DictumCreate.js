@@ -1,5 +1,5 @@
 import React from "react";
-import {BASE_PATH, restPost} from "../../commons/RestUtils";
+import {BASE_PATH, restPost, restPutUris} from "../../commons/RestUtils";
 import DictumForm from "./DictumForm";
 import {DICTUM} from "../../commons/routes";
 
@@ -9,11 +9,16 @@ export default class DictumCreate extends React.Component {
         const body = {
             title: this.state.title,
             content: this.state.content,
+            user: this.props.userHref
         };
-        const history = this.props.history;
+        const redirect = this.props.redirect;
         restPost(BASE_PATH + '/dictums', body, res => {
             console.log("Successfully saved dictum: ", res);
-            history.push({pathname: DICTUM});
+            restPutUris(this.props.processHref + "/dictums",
+                [res._links.self.href], put => {
+                    console.log("Successfully saved dictum into process: ", put);
+                    redirect();
+                });
         });
         e.preventDefault();
     };

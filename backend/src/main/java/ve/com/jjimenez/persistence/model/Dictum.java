@@ -24,6 +24,8 @@ public class Dictum implements Serializable {
     @Column(nullable = false)
     private String content;
 
+    private String user;
+
 //    @ManyToMany(mappedBy = "dictums", fetch = FetchType.EAGER)
 //    private Set<Process> processes;
 }
