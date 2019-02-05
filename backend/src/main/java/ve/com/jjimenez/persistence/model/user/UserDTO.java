@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
@@ -13,10 +12,5 @@ import javax.validation.constraints.NotNull;
 public class UserDTO extends AbstractUserDTO {
 
     @NotNull
-    @NotEmpty
     private String password;
-
-    @NotNull
-    @NotEmpty
-    private String matchingPassword;
 }

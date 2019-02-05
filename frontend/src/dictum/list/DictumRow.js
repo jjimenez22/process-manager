@@ -1,22 +1,25 @@
-import React from "react";
-import EditDeleteButtons from "../../commons/EditDeleteButtons";
-import {DICTUM_EDIT} from "../../commons/routes";
+import React, {Component} from "react";
+import {restGet} from "../../commons/RestUtils";
 
-export default function DictumRow(props) {
-    const editButtons = (
-        <EditDeleteButtons
-            editPath={DICTUM_EDIT}
-            editState={{dictum: props.dictum}}
-            onDelete={() => {
-                props.onDelete(props.id)
-            }}
-        />
-    );
-    return (
-        <tr>
-            <td>{props.dictum.title}</td>
-            <td>{props.dictum.content}</td>
-            <td>{editButtons}</td>
-        </tr>
-    );
+export default class DictumRow extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {username: null}
+    }
+
+    componentDidMount() {
+        restGet(this.props.dictum.user, obj => {
+            this.setState({username: obj.username});
+        });
+    }
+
+    render() {
+        return (
+            <tr>
+                <td>{this.props.dictum.title}</td>
+                <td>{this.props.dictum.content}</td>
+                <td>{this.state.username}</td>
+            </tr>
+        );
+    }
 }

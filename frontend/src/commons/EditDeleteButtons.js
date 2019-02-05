@@ -8,11 +8,12 @@ export default function EditDeleteButtons(props) {
                 pathname: props.editPath,
                 state: props.editState
             }}>
-                <button>edit</button>
+                <button>Edit</button>
             </Link>
             <button onClick={props.onDelete}>
-                delete
+                Delete
             </button>
+            {props.extra}
         </div>
     );
 }

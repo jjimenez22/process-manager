@@ -6,8 +6,8 @@ import UserEdit from "./user/form/UserEdit";
 import ProcessCreate from "./process/form/ProcessCreate";
 import {
     DICTUM,
-    DICTUM_CREATE,
-    DICTUM_EDIT,
+    DICTUM_FORM,
+    DICTUM_LIST,
     PROCESS,
     PROCESS_CREATE,
     PROCESS_EDIT,
@@ -16,12 +16,12 @@ import {
     USER_REGISTER
 } from "./commons/routes";
 import ProcessEdit from "./process/form/ProcessEdit";
-import DictumCreate from "./dictum/form/DictumCreate";
-import DictumEdit from "./dictum/form/DictumEdit";
 import FilterableDictumTable from "./dictum/list/FilterableDictumTable";
 import {Login} from "./login/Login";
 import FilterableUserTable from "./user/list/FilterableUserTable";
 import FilterableProcessTable from "./process/list/FilterableProcessTable";
+import DictumProcessTable from "./dictum/list/DictumProcessTable";
+import DictumEditOrCreate from "./dictum/form/DictumEditOrCreate";
 
 class App extends Component {
     render() {
@@ -37,9 +37,9 @@ class App extends Component {
                 <Route exact path={PROCESS_CREATE} component={ProcessCreate}/>
                 <Route exact path={PROCESS_EDIT} component={ProcessEdit}/>
 
-                <Route exact path={DICTUM} component={FilterableDictumTable}/>
-                <Route exact path={DICTUM_CREATE} component={DictumCreate}/>
-                <Route exact path={DICTUM_EDIT} component={DictumEdit}/>
+                <Route exact path={DICTUM} component={DictumProcessTable}/>
+                <Route exact path={DICTUM_FORM} component={DictumEditOrCreate}/>
+                <Route exact path={DICTUM_LIST} component={FilterableDictumTable}/>
             </div>
         );
     }

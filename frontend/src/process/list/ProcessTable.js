@@ -12,6 +12,8 @@ export default function ProcessTable(props) {
                     key={href}
                     id={href}
                     onDelete={props.onDelete}
+                    isDictum={props.isDictum}
+                    userHref={props.userHref}
                 />
             );
         });

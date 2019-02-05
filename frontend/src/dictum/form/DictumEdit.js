@@ -7,10 +7,10 @@ export default class DictumEdit extends Component {
 
     handleClick = (e) => {
         const body = this.state.dictum;
-        const history = this.props.history;
+        const redirect = this.props.redirect;
         restPut(body._links.self.href, body, res => {
             console.log("Successfully saved dictum: ", res);
-            history.push({pathname: DICTUM});
+            redirect();
         });
         e.preventDefault();
     };
@@ -18,7 +18,7 @@ export default class DictumEdit extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dictum: this.props.location.state.dictum,
+            dictum: this.props.dictum,
         };
     }
 
