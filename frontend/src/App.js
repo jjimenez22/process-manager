@@ -17,7 +17,7 @@ import {
 } from "./commons/routes";
 import ProcessEdit from "./process/form/ProcessEdit";
 import FilterableDictumTable from "./dictum/list/FilterableDictumTable";
-import {Login} from "./login/Login";
+import Login from "./login/Login";
 import FilterableUserTable from "./user/list/FilterableUserTable";
 import FilterableProcessTable from "./process/list/FilterableProcessTable";
 import DictumProcessTable from "./dictum/list/DictumProcessTable";

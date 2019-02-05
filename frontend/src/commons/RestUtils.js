@@ -77,11 +77,14 @@ export function restGet(url, callback) {
         });
 }
 
-export function restPost(url, body, callback) {
+export function restPost(url, body, callback, failed) {
     fetch(url, POST_INIT(body))
         .then(res => res.json())
         .then(callback)
-        .catch(e => console.error("Failed posting data: ", e));
+        .catch(e => {
+            console.error("Failed posting data: ", e)
+            failed("An error ocured saving data")
+        });
 }
 
 export function restPut(url, body, callback) {

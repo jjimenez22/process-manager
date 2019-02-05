@@ -9,6 +9,8 @@ export default class RoleSelect extends React.Component {
     render() {
         return (
             <select
+                className="custom-select"
+                id={this.props.id}
                 value={this.props.value}
                 onChange={this.handleChange}>
                 <option value={"ADMIN"}>Administrator</option>

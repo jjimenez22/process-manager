@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+html, body {
+    height: 100%;
+    font-family: 'Numans', sans-serif;
+    background-image: url('https://images.alphacoders.com/458/458169.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 100%;
+}
+
+.user-login {
+    height: 100%;
+}
+
+.user-login .container {
+    height: 100%;
+    align-content: center;
+}
+
+.user-login .card {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.3) !important;
+    border-radius: 20px;
+    height: 300px;
+}
+
+.card-header {
+    text-align: left;
+}
+
+.user-login .login_btn {
+    color: white;
+    background-color: #2972a2;
+    width: 100px;
+}
+
+.user-login .bt_login_container {
+    height: 38px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 35px;
+}
+
+.user-login .card-header h3 {
+    color: white;
+}
+
+.user-login .input-group-prepend span {
+    width: 50px;
+    background-color: #2972a2;
+    color: white;
+    border: 0 !important;
+}
+
+.user-login input.form-control:focus {
+    outline: none !important;
+    box-shadow: inset 0px 0px 15px 2px rgba(10, 160, 183, 0.20);
+}
+
+.user-login .singup-hide-large {
+    margin-left: 8px;
+    display: none;
+}
+
+.user-login .login_btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.user-login .login_btn:hover {
+    background-color: transparent;
+    border: solid 1px #0aa9b7;
+    color: white;
+    transition: all .5s;
+}
+
+.user-login .login_btn:active {
+    transition: transform .3s;
+    transform: scale(.8);
+}
+
+.user-login .links:active {
+    transform: scale(.8);
+}
+
+@media only screen and (max-width: 450px) {
+    .user-login .card-body {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .user-login .form-control,
+    .user-login .custom-select,
+    .user-login .label-singup {
+        height: 28px;
+        font-size: 80%;
+    }
+
+    .user-login .btn-acept {
+        font-size: 80%;
+    }
+
+    .user-login .btn-cancel {
+        font-size: 80%;
+    }
+
+}
+
+@media only screen and (max-width: 640px) {
+    .user-login .container {
+        max-width: 100%;
+    }
+
+    .user-login [class*="col-"] {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .user-login .card-header h3 {
+        font-size: 1.5rem;
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .user-login .card {
+        width: 100%;
+        background-color: transparent !important;
+        border: none;
+        height: 100%;
+    }
+
+    .user-login .card-body {
+        padding-top: 80px;
+        margin-right: 45px;
+        margin-left: 45px;
+    }
+
+    .user-login .login_btn {
+        width: 100%;
+    }
+
+    .btn-acept {
+        width: 50%;
+        margin-right: 0 !important;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .btn-cancel {
+        width: 50%;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .registerUser .card {
+        height: 100% !important;
+    }
+
+    .user-login.registerUser {
+        background-color: transparent !important;
+    }
+
+}
+
+@media only screen and (orientation: landscape) and (max-height: 450px) {
+    .user-login .card-header h3 {
+        margin-top: 8px;
+    }
+
+    .user-login .card-body {
+        padding-top: 20px;
+    }
+
+    .user-login .bt_login_container {
+        margin-top: 0;
+    }
+
+    .user-login .singup-hide-large {
+        display: initial;
+    }
+
+    .user-login .singup-hide-small {
+        display: none !important;
+    }
+
+    .user-login .login_btn {
+        width: 50%;
+    }
+}
+
+/*Just for signup form*/
+.label-singup {
+    background-color: #2972a2 !important;
+    color: white;
+    border: 0 !important;
+    width: 115px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-acept {
+    background-color: #2972a2;
+    color: white;
+    margin-right: 8px;
+}
+
+.btn-cancel {
+    background-color: white;
+}
+
+.registerUser {
+    background-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.registerUser .card {
+    height: 100% !important;
+    border-radius: 0;
+    background-color: transparent !important;
+    border: none;
+}
+
+.registerUser .card-header {
+    display: none;
+}

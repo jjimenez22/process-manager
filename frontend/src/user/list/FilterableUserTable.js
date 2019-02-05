@@ -3,6 +3,9 @@ import UserTable from "./UserTable";
 import {BASE_PATH, restDelete, restGet} from "../../commons/RestUtils";
 import {Link} from "react-router-dom";
 import {USER_REGISTER} from "../../commons/routes";
+import UniversalButton from "../../commons/UniversalButton";
+import PageTitle from "../../commons/PageTitle"
+
 
 export default class FilterableUserTable extends Component {
 
@@ -36,15 +39,21 @@ export default class FilterableUserTable extends Component {
     }
 
     render() {
-        const register = (
-            <Link to={USER_REGISTER}>
-                <button>Register</button>
-            </Link>
-        );
         return (
-            <div>
-                {this.isEdit ? register : null}
-                <br/>
+            <div id="user-list">
+                {/*Component fot the table title*/}
+                <PageTitle title="User list"/>
+
+                <div className="card">
+                    {/*Button to add a new user*/}
+                    {
+                        this.isEdit &&
+                        <Link to={USER_REGISTER} className="d-flex justify-content-end">
+                            <UniversalButton name="Add a new user" class="btn-list"/>
+                        </Link>
+                    }
+
+                    {/*The table that list the users*/}
                 <UserTable
                     users={this.state.users}
                     isEdit={this.isEdit}
@@ -53,6 +62,7 @@ export default class FilterableUserTable extends Component {
                     selected={this.props.selected}
                     onCheck={this.props.onCheck}
                 />
+                </div>
             </div>
         );
     }
