@@ -15,7 +15,8 @@ export default function Table(props) {
                 </thead>
                 <tbody>
                 {
-                    props.children ? props.children :
+                    props.children && props.children.length > 0
+                        ? props.children :
                         <tr>
                             <td colSpan={props.header.length}>There's no data to show</td>
                         </tr>

@@ -55,6 +55,7 @@ export default class ProcessCreate extends React.Component {
     render() {
         return (
             <ProcessForm
+                titleName="Add a new process"
                 onNameChange={e => {
                     this.setState({
                         name: e.target.value

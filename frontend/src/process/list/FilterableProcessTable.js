@@ -3,6 +3,8 @@ import ProcessTable from "./ProcessTable";
 import {BASE_PATH, restDelete, restGet} from "../../commons/RestUtils";
 import {Link} from "react-router-dom";
 import {PROCESS_CREATE} from "../../commons/routes";
+import UniversalButton from "../../commons/UniversalButton";
+import PageTitle from "../../commons/PageTitle"
 
 export default class FilterableProcessTable extends Component {
 
@@ -32,11 +34,11 @@ export default class FilterableProcessTable extends Component {
 
     render() {
         return (
-            <div>
-                <Link to={PROCESS_CREATE}>
-                    <button>Create New</button>
+            <div id="list-process">
+                <PageTitle title="List of process"/>
+                <Link to={PROCESS_CREATE} className="d-flex justify-content-end">
+                    <UniversalButton name="Create a new process" class="btn-list"/>
                 </Link>
-                <br/>
                 <ProcessTable
                     processes={this.state.processes}
                     onDelete={this.deleteProcess}

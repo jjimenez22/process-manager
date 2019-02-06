@@ -1,0 +1,147 @@
+a,
+a:hover {
+    text-decoration: none !important;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    transition: all .3s;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.process-edit {
+    height: 100%;
+}
+
+.process-edit #user-list .card-header {
+    background-color: transparent;
+    font-size: 1.2rem;
+}
+
+.input-process {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 20px 0 20px;
+}
+
+.process-edit .input-process .input-group {
+    width: 48%;
+}
+
+.process-edit .input-group-prepend {
+    width: 100%;
+}
+
+.process-edit .input-group-prepend label {
+    width: 95%;
+}
+
+.process-edit .form-control {
+    width: 95%;
+}
+
+.process-edit .label-singup {
+    justify-content: flex-start;
+}
+
+.process-edit .input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.process-edit .margin-buttons {
+    margin-top: 20px;
+}
+
+.process-edit #user-list .card-header {
+    color: #2972a2;
+}
+
+.btn-comment {
+    margin-left: 8px;
+    background-color: white;
+    border: solid 1px #ccc;
+}
+
+.hide-icon-large {
+    display: none;
+}
+
+@media only screen and (max-height: 400px) {
+    .process-edit .card-header {
+        display: none;
+    }
+
+    .process-edit .input-group-prepend {
+        height: 25px;
+    }
+
+    .process-edit .input-group-prepend label {
+        font-size: .8rem;
+    }
+
+    .process-edit .form-control {
+        height: 25px;
+        font-size: .8rem;
+    }
+
+    .process-edit .table-container {
+        height: 190px !important;
+    }
+
+    .process-edit .table-container {
+        height: 125px !important;
+    }
+}
+
+@media only screen and (max-height: 640px) {
+    .process-edit .table-container {
+        height: 190px;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    .hide-icon-large {
+        display: initial;
+    }
+
+    .process-edit .btn-acept,
+    #list-process .btn-acept {
+        width: 100%;
+    }
+
+    .btn-comment {
+        margin-left: 0;
+    }
+
+    .process-edit .margin-buttons .btn-acept,
+    #list-process .margin-buttons .btn-acept {
+        width: 50%;
+    }
+
+    .hide-name-small {
+        display: none;
+    }
+
+    .process-edit .input-process .input-group {
+        width: 100%;
+    }
+
+    .input-process {
+        flex-direction: column;
+    }
+
+    .process-edit #user-list .card-header {
+        display: none;
+    }
+
+    .process-edit .margin-buttons {
+        margin-top: 10px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
