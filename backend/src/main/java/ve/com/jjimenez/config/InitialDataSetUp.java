@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 import ve.com.jjimenez.persistence.model.User;
 import ve.com.jjimenez.persistence.repo.UserRepository;
 
+/**
+ * Test {@link User}s initializer
+ */
 @Component
 public class InitialDataSetUp implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -17,6 +20,9 @@ public class InitialDataSetUp implements ApplicationListener<ContextRefreshedEve
         this.userRepository = userRepository;
     }
 
+    /**
+     * This method is ran once the Application Context is up and persists one user of each type.
+     */
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         User user = new User();

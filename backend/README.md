@@ -20,3 +20,4 @@ Then run it with: `docker run -d -p 8080:8080 process-manager-backend`
 ## Docs
 
 - Swagger: `$BASE_URL/swagger-ui.html` (Example: `localhost:8080/swagger-ui.html`)
+- JavaDocs: `mvn javadoc:javadoc` then open in browser `./target/site/apidocs/index.html`

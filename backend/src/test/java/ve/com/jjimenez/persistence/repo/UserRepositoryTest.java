@@ -12,6 +12,9 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * {@link UserRepository} integration tests
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserRepositoryTest {
@@ -19,6 +22,11 @@ public class UserRepositoryTest {
     @Autowired
     UserRepository repository;
 
+    /**
+     * When findByUsername is called, should return the corresponding {@link User}
+     *
+     * @see UserRepository#findByUsername(String)
+     */
     @Test
     public void whenFindByUsername_thenReturnUser() {
 //        given
@@ -36,6 +44,10 @@ public class UserRepositoryTest {
         assertEquals(user.getUsername(), found.get().getUsername());
     }
 
+    /**
+     * When findAllByRole is called, should return a list with {@link User}s with that role.
+     * @see UserRepository#findAllByRole(String)
+     */
     @Test
     public void whenFindAllByRole_thenReturnUser() {
 //        given
