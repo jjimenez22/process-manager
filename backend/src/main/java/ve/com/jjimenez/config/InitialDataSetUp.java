@@ -28,18 +28,21 @@ public class InitialDataSetUp implements ApplicationListener<ContextRefreshedEve
         User user = new User();
         user.setUsername("admin");
         user.setPassword("admin");
+        user.setFirstName("Administrator");
         user.setRole("ADMIN");
         userRepository.save(user);
 
         user = new User();
         user.setUsername("manager");
         user.setPassword("manager");
+        user.setFirstName("Manager");
         user.setRole("MANAGER");
         userRepository.save(user);
 
         user = new User();
         user.setUsername("enduser");
         user.setPassword("enduser");
+        user.setFirstName("End User");
         user.setRole("END_USER");
         userRepository.save(user);
     }
