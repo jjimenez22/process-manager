@@ -7,8 +7,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -46,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                 .authenticationEntryPoint(restAuthenticationEntryPoint)
                 .and()
-                .authorizeRequests()/*.anyRequest().permitAll();*/
+                .authorizeRequests()
                 .antMatchers("/api", "/api/profile", "/login*", "**/swagger-ui.html", "**/v2/api-docs").permitAll()
                 .antMatchers("/api/users/**").hasAnyAuthority(ADMIN, MANAGER, END_USER)
                 .antMatchers("/api/processes/**").hasAnyAuthority(MANAGER, END_USER)
@@ -57,11 +55,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureHandler(failureHandler)
                 .and()
                 .logout();
-    }
-
-    @Bean
-    public PasswordEncoder encoder() {
-        return new BCryptPasswordEncoder();
     }
 
     @Bean
