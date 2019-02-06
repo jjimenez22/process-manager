@@ -67,6 +67,7 @@ export default class ProcessEdit extends Component {
         const process = this.state.process;
         return (
             <ProcessForm
+                titleName="Edit a process"
                 process={process}
                 onNameChange={e => {
                     process.name = e.target.value;

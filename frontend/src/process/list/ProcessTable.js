@@ -1,5 +1,6 @@
 import React from "react";
 import ProcessRow from "./ProcessRow";
+import Table from "../../commons/Table"
 
 export default function ProcessTable(props) {
     const rows = [];
@@ -19,15 +20,12 @@ export default function ProcessTable(props) {
             );
         });
     }
+
+    const headerTable = ["Name", "Description", "Action"];
+
     return (
-        <table>
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Description</th>
-            </tr>
-            </thead>
-            <tbody>{rows}</tbody>
-        </table>
+        <Table header={headerTable}>
+            {rows}
+        </Table>
     );
 }

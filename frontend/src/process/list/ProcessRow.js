@@ -2,6 +2,8 @@ import React from "react";
 import EditDeleteButtons from "../../commons/EditDeleteButtons";
 import {DICTUM_FORM, DICTUM_LIST, PROCESS_EDIT} from "../../commons/routes";
 import {Link} from "react-router-dom";
+import Row from "../../commons/Row";
+import UniversalButton from "../../commons/UniversalButton";
 
 export default function ProcessRow(props) {
     const commentsButton = (
@@ -9,7 +11,7 @@ export default function ProcessRow(props) {
             pathname: DICTUM_LIST,
             state: {process: props.process}
         }}>
-            <button>Comments</button>
+            <UniversalButton name="Comments" class="btn-comment" icon="fas fa-comment-dots"/>
         </Link>
     );
     const editButtons = (
@@ -31,16 +33,17 @@ export default function ProcessRow(props) {
                 currentUser: props.currentUser
             }
         }}>
-            <button>Comment</button>
+            <UniversalButton name="Comments"/>
         </Link>
     );
+
+    const row = [props.process.name, props.process.description]
+
     return (
-        <tr>
-            <td>{props.process.name}</td>
-            <td>{props.process.description}</td>
-            <td>{props.isDictum ?
-                dictumsButton :
-                editButtons}</td>
-        </tr>
+        <Row rows={row}>
+            {
+                props.isDictum ? dictumsButton : editButtons
+            }
+        </Row>
     );
 }

@@ -50,6 +50,10 @@
         padding-top: 25px;
     }
 
+    #user-list .btn-acept {
+        width: 100% !important;
+    }
+
     .table-container {
         margin-top: 20px !important;
     }

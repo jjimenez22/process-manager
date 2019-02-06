@@ -18,6 +18,11 @@ export default function InputForm(props) {
                         onChange={props.onChange}
                         id={props.id}
                     />
+                    : props.textarea ?
+                    <textarea value={props.value}
+                              onChange={props.onChange} id={props.id}
+                              className="form-control"/>
+
                     : <input type={props.type}
                              className="form-control"
                              id={props.id}
