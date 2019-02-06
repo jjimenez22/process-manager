@@ -22,12 +22,15 @@ import FilterableUserTable from "./user/list/FilterableUserTable";
 import FilterableProcessTable from "./process/list/FilterableProcessTable";
 import DictumProcessTable from "./dictum/list/DictumProcessTable";
 import DictumEditOrCreate from "./dictum/form/DictumEditOrCreate";
+import Logout from "./login/Logout";
 
 class App extends Component {
     render() {
         return (
             <div className="App">
                 <Route exact path="/" component={Login}/>
+
+                <Route path="/*" component={Logout}/>
 
                 <Route exact path={USER} component={FilterableUserTable}/>
                 <Route exact path={USER_REGISTER} component={UserRegistration}/>
