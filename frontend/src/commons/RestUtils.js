@@ -102,7 +102,6 @@ export function restPost(url, body, callback, failed) {
 export function restPostNoBody(url, callback, failed) {
     fetch(url, POST_INIT_NO_BODY)
         .then(callback)
-        // .then(callback)
         .catch(e => {
             console.error("Failed posting data: ", e);
             failed();
