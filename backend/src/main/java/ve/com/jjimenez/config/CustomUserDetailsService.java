@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ve.com.jjimenez.persistence.model.user.User;
+import ve.com.jjimenez.persistence.model.User;
 import ve.com.jjimenez.persistence.repo.UserRepository;
 
 import javax.transaction.Transactional;

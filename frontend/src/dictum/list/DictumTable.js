@@ -26,6 +26,7 @@ export default function DictumTable(props) {
                 <tr>
                     <th>Title</th>
                     <th>Content</th>
+                    <th>User</th>
                 </tr>
                 </thead>
                 <tbody>{rows}</tbody>

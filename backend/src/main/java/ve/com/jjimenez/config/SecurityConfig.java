@@ -42,21 +42,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
+                .cors().and()
                 .exceptionHandling()
                 .authenticationEntryPoint(restAuthenticationEntryPoint)
                 .and()
-                .authorizeRequests().anyRequest().permitAll();
-//                .antMatchers("/api", "/api/profile", "/login*", "**/swagger-ui.html", "**/v2/api-docs").permitAll()
-//                .antMatchers("/api/admin/**").hasAuthority(ADMIN)
-//                .antMatchers("/api/users/**").hasAnyAuthority(ADMIN, MANAGER, END_USER)
-//                .antMatchers("/api/processes/**").hasAnyAuthority(MANAGER, END_USER)
-//                .antMatchers("/api/dictums/**").hasAuthority(END_USER)
-//                .and()
-//                .formLogin()
-//                .successHandler(successHandler)
-//                .failureHandler(failureHandler)
-//                .and()
-//                .logout();
+                .authorizeRequests()/*.anyRequest().permitAll();*/
+                .antMatchers("/api", "/api/profile", "/login*", "**/swagger-ui.html", "**/v2/api-docs").permitAll()
+                .antMatchers("/api/users/**").hasAnyAuthority(ADMIN, MANAGER, END_USER)
+                .antMatchers("/api/processes/**").hasAnyAuthority(MANAGER, END_USER)
+                .antMatchers("/api/dictums/**").hasAuthority(END_USER)
+                .and()
+                .formLogin()
+                .successHandler(successHandler)
+                .failureHandler(failureHandler)
+                .and()
+                .logout();
     }
 
     @Bean
@@ -69,7 +69,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/api/**").allowedOrigins("*");
+                registry.addMapping("/**").allowedOrigins("*");
             }
         };
     }

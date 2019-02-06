@@ -8,6 +8,7 @@ export default class DictumEditOrCreate extends Component {
     constructor(props) {
         super(props);
         this.userHref = this.props.location.state.userHref;
+        this.currentUser = this.props.location.state.currentUser;
         this.process = this.props.location.state.process;
         this.href = this.process._links.self.href;
         this.state = {
@@ -26,7 +27,10 @@ export default class DictumEditOrCreate extends Component {
     }
 
     redirect() {
-        this.props.history.push({pathname: DICTUM});
+        this.props.history.push({
+            pathname: DICTUM,
+            state: {currentUser: this.currentUser}
+        });
     }
 
     render() {
@@ -40,6 +44,7 @@ export default class DictumEditOrCreate extends Component {
                 <DictumEdit
                     dictum={dictum}
                     redirect={this.redirect}
+                    currentUser={this.currentUser}
                 />
             );
         } else {
@@ -48,6 +53,7 @@ export default class DictumEditOrCreate extends Component {
                     processHref={this.href}
                     userHref={this.userHref}
                     redirect={this.redirect}
+                    currentUser={this.currentUser}
                 />
             );
         }

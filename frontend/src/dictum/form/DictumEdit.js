@@ -17,6 +17,7 @@ export default class DictumEdit extends Component {
 
     constructor(props) {
         super(props);
+        this.currentUser = props.currentUser;
         this.state = {
             dictum: this.props.dictum,
         };
@@ -41,6 +42,7 @@ export default class DictumEdit extends Component {
                 }}
                 onAccept={this.handleClick}
                 onCancelPath={DICTUM}
+                currentUser={this.currentUser}
             />
         );
     }

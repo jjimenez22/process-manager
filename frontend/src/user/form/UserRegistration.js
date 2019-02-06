@@ -14,7 +14,7 @@ export default class UserRegistration extends React.Component {
             password: this.state.password
         };
         const history = this.props.history;
-        restPost(BASE_PATH + '/admin', body, res => {
+        restPost(BASE_PATH + '/users', body, res => {
             console.log("Successfully saved user: ", res);
             history.push({pathname: USER});
         }, errroMessage => {

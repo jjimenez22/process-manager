@@ -25,6 +25,7 @@ export default class DictumCreate extends React.Component {
 
     constructor(props) {
         super(props);
+        this.currentUser = props.currentUser;
         this.state = {
             title: "",
             content: "",
@@ -46,6 +47,7 @@ export default class DictumCreate extends React.Component {
                 }}
                 onAccept={this.handleClick}
                 onCancelPath={DICTUM}
+                currentUser={this.currentUser}
             />
         );
     }
