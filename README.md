@@ -6,7 +6,18 @@ A Spring Boot and React.js application for SoftPlan test.
 - There are three (3) types of Users: Administrator, Manager and End-User.
 - The Administrator can register, browse, modify and delete users.
 - The Manager can create, browse, modify and delete processes. Users can be assigned to processes in order to be commented by them, then comments for each process can be browsed.
-- The End-User can browse its assigned processes and state a comment on each one. 
+- The End-User can browse its assigned processes and state a comment on each one.
+
+By default, one user of each type are created at application's startup:
+- Administrator:
+username: `admin`
+password: `admin`
+- Manager:
+username: `manager`
+password: `manager`
+- End-User:
+username: `enduser`
+password: `enduser`
 
 ## Docker
 
