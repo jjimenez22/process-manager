@@ -12,6 +12,9 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+/**
+ * Security configuration class.
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -19,6 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public static final String ADMIN = "ADMIN";
     public static final String MANAGER = "MANAGER";
     public static final String END_USER = "END_USER";
+
     private final SavedRequestAwareAuthenticationSuccessHandler successHandler =
             new SavedRequestAwareAuthenticationSuccessHandler();
     private final SimpleUrlAuthenticationFailureHandler failureHandler = new SimpleUrlAuthenticationFailureHandler();
@@ -32,6 +36,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.userDetailsService = userDetailsService;
     }
 
+    /**
+     * Custom {@link org.springframework.security.core.userdetails.UserDetails} provider.
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService);
@@ -40,12 +47,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .cors().and()
+                .cors().and()//Allow CrossOrigin
                 .exceptionHandling()
-                .authenticationEntryPoint(restAuthenticationEntryPoint)
+                .authenticationEntryPoint(restAuthenticationEntryPoint)//Custom unauthorized response
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api", "/api/profile", "/login*", "**/swagger-ui.html", "**/v2/api-docs").permitAll()
+                .antMatchers("/api", "/api/profile", "/login*", "**/swagger-ui.html", "**/v2/api-docs").permitAll()//Swagger login and profile
                 .antMatchers("/api/users/**").hasAnyAuthority(ADMIN, MANAGER, END_USER)
                 .antMatchers("/api/processes/**").hasAnyAuthority(MANAGER, END_USER)
                 .antMatchers("/api/dictums/**").hasAuthority(END_USER)
@@ -57,6 +64,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout();
     }
 
+    /**
+     * Cross Origin mappings
+     */
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurerAdapter() {

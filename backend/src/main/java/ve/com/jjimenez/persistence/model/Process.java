@@ -8,6 +8,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
+/**
+ * Process entity
+ */
 @Entity
 @Data
 @EqualsAndHashCode(exclude = {"users"})
@@ -24,12 +27,18 @@ public class Process implements Serializable {
     @Column
     private String description;
 
+    /**
+     * {@link User}s assigned for review
+     */
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "user_process",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "process_id", referencedColumnName = "id"))
     private Set<User> users;
 
+    /**
+     * {@link Dictum}s made to process
+     */
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "process_dictum",
             joinColumns = @JoinColumn(name = "dictum_id", referencedColumnName = "id"),

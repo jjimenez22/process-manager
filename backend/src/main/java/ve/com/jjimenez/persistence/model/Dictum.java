@@ -8,10 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
 
+/**
+ * Dictum entity
+ */
 @Entity
 @Data
-//@EqualsAndHashCode(exclude = {"processes"})
-//@ToString(exclude = {"processes"})
 public class Dictum implements Serializable {
 
     @Id
@@ -24,9 +25,9 @@ public class Dictum implements Serializable {
     @Column(nullable = false)
     private String content;
 
+    /**
+     * User who made the dictum
+     */
     private String user;
-
-//    @ManyToMany(mappedBy = "dictums", fetch = FetchType.EAGER)
-//    private Set<Process> processes;
 }
 

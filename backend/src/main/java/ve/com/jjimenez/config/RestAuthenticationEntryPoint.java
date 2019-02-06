@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Custom rest response for Unauthorized requests
+ */
 @Component
 public final class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
@@ -16,6 +19,6 @@ public final class RestAuthenticationEntryPoint implements AuthenticationEntryPo
     public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
                          AuthenticationException e) throws IOException, ServletException {
 
-        httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");//sidenote: maybe missing www-authenticate header
+        httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
     }
 }

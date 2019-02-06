@@ -8,6 +8,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
+/**
+ * User entity for login
+ */
 @Entity
 @Data
 @EqualsAndHashCode(exclude = {"processes"})
@@ -28,7 +31,6 @@ public class User implements Serializable {
     private String lastName;
 
     @Column(nullable = false)
-//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @Column(nullable = false)

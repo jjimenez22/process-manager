@@ -9,12 +9,16 @@ import ve.com.jjimenez.persistence.model.Dictum;
 import ve.com.jjimenez.persistence.model.Process;
 import ve.com.jjimenez.persistence.model.User;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+/**
+ * {@link ProcessRepository} integration tests
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ProcessRepositoryTest {
@@ -26,6 +30,11 @@ public class ProcessRepositoryTest {
     @Autowired
     DictumRepository dictumRepository;
 
+    /**
+     * When {@link Process} is deleted, shouldn't delete related {@link User}s
+     *
+     * @see ProcessRepository#delete(Serializable)
+     */
     @Test
     public void whenDelete_thenUserNotDeleted() {
 //        given
@@ -49,6 +58,10 @@ public class ProcessRepositoryTest {
         assertNotNull(related);
     }
 
+    /**
+     * When {@link Process} is deleted, should delete related {@link Dictum}s
+     * @see ProcessRepository#delete(Serializable)
+     */
     @Test
     public void whenDelete_thenDictumDeleted() {
         //        given

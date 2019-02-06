@@ -14,6 +14,9 @@ import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.Collections;
 
+/**
+ * {@link UserDetails} provider for authentication.
+ */
 @Service
 @Transactional
 public class CustomUserDetailsService implements UserDetailsService {
@@ -29,6 +32,13 @@ public class CustomUserDetailsService implements UserDetailsService {
         return Collections.singletonList(new SimpleGrantedAuthority(role));
     }
 
+    /**
+     * Retrieves {@link User} by its username and creates {@link UserDetails} from it.
+     *
+     * @param username the username from the {@link User} being retrieved.
+     * @return UserDetails created from the user retrieved
+     * @throws UsernameNotFoundException is thrown when {@link User} is not found.
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
