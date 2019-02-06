@@ -45,9 +45,39 @@ function PUT_INIT(body) {
     };
 }
 
+function PATCH_INIT(body) {
+    return {
+        method: 'PATCH',
+        credentials: 'include',
+        body: JSON.stringify(body),
+        headers:
+            {
+                'Accept':
+                    'application/json',
+                'Content-Type':
+                    'application/json'
+            }
+    };
+}
+
 function PUT_INIT_TEXT(body) {
     return {
         method: 'PUT',
+        credentials: 'include',
+        body: uriList(body),
+        headers:
+            {
+                'Accept':
+                    'application/json',
+                'Content-Type':
+                    'text/uri-list'
+            }
+    };
+}
+
+function PATCH_INIT_TEXT(body) {
+    return {
+        method: 'PATCH',
         credentials: 'include',
         body: uriList(body),
         headers:
@@ -115,10 +145,23 @@ export function restPut(url, body, callback) {
         .catch(e => console.error("Failed putting data: ", e));
 }
 
+export function restPatch(url, body, callback) {
+    fetch(url, PATCH_INIT(body))
+        .then(res => res.json())
+        .then(callback)
+        .catch(e => console.error("Failed patching data: ", e));
+}
+
 export function restPutUris(url, body, callback) {
     fetch(url, PUT_INIT_TEXT(body))
         .then(callback)
         .catch(e => console.error("Failed putting data: ", e));
+}
+
+export function restPatchUris(url, body, callback) {
+    fetch(url, PATCH_INIT_TEXT(body))
+        .then(callback)
+        .catch(e => console.error("Failed patching data: ", e));
 }
 
 export function restDelete(url, callback) {
