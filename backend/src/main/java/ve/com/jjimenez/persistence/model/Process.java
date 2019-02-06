@@ -3,7 +3,6 @@ package ve.com.jjimenez.persistence.model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import ve.com.jjimenez.persistence.model.user.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -25,7 +24,7 @@ public class Process implements Serializable {
     @Column
     private String description;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "user_process",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "process_id", referencedColumnName = "id"))

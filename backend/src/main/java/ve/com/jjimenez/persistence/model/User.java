@@ -1,9 +1,8 @@
-package ve.com.jjimenez.persistence.model.user;
+package ve.com.jjimenez.persistence.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import ve.com.jjimenez.persistence.model.Process;
 
 import javax.persistence.*;
 import java.io.Serializable;

@@ -5,7 +5,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import ve.com.jjimenez.persistence.model.user.User;
+import ve.com.jjimenez.persistence.model.User;
 import ve.com.jjimenez.persistence.repo.UserRepository;
 
 @Component
