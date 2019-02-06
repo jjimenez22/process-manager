@@ -71,6 +71,10 @@ a:hover {
     display: none;
 }
 
+.process-edit #user-list .card-header .btn {
+    display: none !important;
+}
+
 @media only screen and (max-height: 400px) {
     .process-edit .card-header {
         display: none;
@@ -135,8 +139,12 @@ a:hover {
         flex-direction: column;
     }
 
+    .process-edit .card-header {
+        font-size: 1.1rem;
+    }
+
     .process-edit #user-list .card-header {
-        display: none;
+        display: none !important;
     }
 
     .process-edit .margin-buttons {

@@ -33,7 +33,7 @@ export default function ProcessRow(props) {
                 currentUser: props.currentUser
             }
         }}>
-            <UniversalButton name="Comments"/>
+            <UniversalButton name="Comment" icon="fas fa-comment-dots"/>
         </Link>
     );
 

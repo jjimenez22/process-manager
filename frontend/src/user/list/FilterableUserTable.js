@@ -4,14 +4,20 @@ import {BASE_PATH, restDelete, restGet, USER_BY_ROLE_PATH} from "../../commons/R
 import {Link} from "react-router-dom";
 import {USER_REGISTER} from "../../commons/routes";
 import UniversalButton from "../../commons/UniversalButton";
-import PageTitle from "../../commons/PageTitle"
-
+import PageTitle from "../../commons/PageTitle";
+import ErrorView from "../../commons/ErrorView";
+import ShowAlert from "../../commons/ShowAlert";
 
 export default class FilterableUserTable extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {users: null};
+        this.state = {
+            users: null,
+            errorOcurred: false,
+            showAlert: false,
+            errorMessage: ""
+        };
 
         this.isEdit = true;
         if (typeof props.isEdit !== 'undefined') {
@@ -29,11 +35,20 @@ export default class FilterableUserTable extends Component {
             this.setState({
                 users: obj._embedded.users
             })
+        }, (e) => {
+            this.setState({
+                errorOcurred: true
+            })
         });
     }
 
     deleteUser(href) {
-        restDelete(href, this.fetchUsers);
+        restDelete(href, this.fetchUsers, (m) => {
+            this.setState({
+                showAlert: true,
+                errorMessage: m
+            })
+        });
     }
 
     componentDidMount() {
@@ -42,7 +57,9 @@ export default class FilterableUserTable extends Component {
 
     render() {
         return (
-            <div id="user-list">
+            this.state.errorOcurred
+                ? <ErrorView/>
+                : <div id="user-list">
                 {/*Component fot the table title*/}
                 <PageTitle title="User list"/>
 
@@ -65,6 +82,13 @@ export default class FilterableUserTable extends Component {
                         onCheck={this.props.onCheck}
                     />
                 </div>
+                    <ShowAlert
+                        showAlert={this.state.showAlert}
+                        errorMessage={this.state.errorMessage}
+                        onConfirm={() => {
+                            this.setState({showAlert: false})
+                        }}
+                    />
             </div>
         );
     }

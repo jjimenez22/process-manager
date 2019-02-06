@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {restGet} from "../../commons/RestUtils";
+import Row from "../../commons/Row";
 
 export default class DictumRow extends Component {
     constructor(props) {
@@ -14,12 +15,9 @@ export default class DictumRow extends Component {
     }
 
     render() {
+        const row = [this.props.dictum.title, this.props.dictum.content, this.state.username]
         return (
-            <tr>
-                <td>{this.props.dictum.title}</td>
-                <td>{this.props.dictum.content}</td>
-                <td>{this.state.username}</td>
-            </tr>
+            <Row rows={row}/>
         );
     }
 }
