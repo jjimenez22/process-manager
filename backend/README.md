@@ -9,7 +9,8 @@ Then run it with: `docker run -d -p 8080:8080 process-manager-backend`
 
 > Spring Boot
 
-Run the app with: `mvn spring-boot:run`
+- Run the app with: `mvn spring-boot:run`
+- Run tests with: `mvn test`
 
 > Java
 
