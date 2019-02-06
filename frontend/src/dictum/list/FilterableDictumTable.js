@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {restGet} from "../../commons/RestUtils";
 import DictumTable from "./DictumTable";
+import PageTitle from "../../commons/PageTitle"
 
 export default class FilterableDictumTable extends Component {
 
@@ -28,6 +29,7 @@ export default class FilterableDictumTable extends Component {
     render() {
         return (
             <div>
+                <PageTitle title="List of Comments"/>
                 <DictumTable
                     dictums={this.state.dictums}
                 />

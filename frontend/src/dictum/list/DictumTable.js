@@ -2,6 +2,8 @@ import React from "react";
 import DictumRow from "./DictumRow";
 import {PROCESS} from "../../commons/routes";
 import {Link} from "react-router-dom";
+import UniversalButton from "../../commons/UniversalButton";
+import Table from "../../commons/Table"
 
 export default function DictumTable(props) {
     const rows = [];
@@ -16,21 +18,17 @@ export default function DictumTable(props) {
             );
         });
     }
+
+    const headerTable = ["Title", "Content", "User"];
     return (
         <div>
-            <Link to={PROCESS}>
-                <button>Back</button>
+            <Link to={PROCESS} className="d-flex justify-content-end">
+                <UniversalButton name="Back" class="btn-list"/>
             </Link>
-            <table>
-                <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Content</th>
-                    <th>User</th>
-                </tr>
-                </thead>
-                <tbody>{rows}</tbody>
-            </table>
+
+            <Table header={headerTable}>
+                {rows}
+            </Table>
         </div>
     );
 }

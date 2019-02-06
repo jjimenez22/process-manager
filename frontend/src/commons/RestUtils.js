@@ -104,7 +104,7 @@ const DELETE_INIT = {
     headers: new Headers()
 };
 
-export function restGet(url, callback) {
+export function restGet(url, callback, failed) {
     fetch(url, GET_INIT)
         .then(res => {
             if (res.ok) {
@@ -116,6 +116,7 @@ export function restGet(url, callback) {
         .then(callback)
         .catch(e => {
             console.error('Failed fetching data: ', e);
+            failed("Acces denied")
         });
 }
 
@@ -134,7 +135,7 @@ export function restPostNoBody(url, callback, failed) {
         .then(callback)
         .catch(e => {
             console.error("Failed posting data: ", e);
-            failed();
+            failed("An error ocured");
         });
 }
 
@@ -164,7 +165,7 @@ export function restPatchUris(url, body, callback) {
         .catch(e => console.error("Failed patching data: ", e));
 }
 
-export function restDelete(url, callback) {
+export function restDelete(url, callback, failed) {
     fetch(url, DELETE_INIT)
         .then(res => {
             if (!res.ok) {
@@ -174,5 +175,6 @@ export function restDelete(url, callback) {
         .then(callback)
         .catch(e => {
             console.error('Failed deleting data: ', e);
+            failed('Failed deleting data')
         });
 }

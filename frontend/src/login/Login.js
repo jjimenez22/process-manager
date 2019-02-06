@@ -1,7 +1,8 @@
 import LoginForm from "./LoginForm";
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 import {BASE_PATH, BASE_URI, restGet, restPostNoBody} from "../commons/RestUtils";
 import {DICTUM, PROCESS, USER} from "../commons/routes";
+import ShowAlert from "../commons/ShowAlert";
 
 export default class Login extends Component {
 
@@ -33,17 +34,24 @@ export default class Login extends Component {
                         default:
                             console.error("Check this switch, some data is inconsistent");
                     }
-                });
-        }, () => {
-            alert("Authentication failed")
-        })
+                }, this.errorOcurred);
+        }, this.errorOcurred)
     };
+
+    errorOcurred = (message) => {
+        this.setState({
+            showAlert: true,
+            errorMessage: message
+        })
+    }
 
     constructor(props) {
         super(props);
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            showAlert: false,
+            errorMessage: ""
         };
 
         this.onChangeUser = this.onChangeUser.bind(this);
@@ -60,13 +68,22 @@ export default class Login extends Component {
 
     render() {
         return (
-            <LoginForm
-                onClick={this.onLogin}
-                onChangeUser={this.onChangeUser}
-                valueUser={this.state.username}
-                onChangePass={this.onChangePassword}
-                valuePass={this.state.password}
-            />
+            <Fragment>
+                <LoginForm
+                    onClick={this.onLogin}
+                    onChangeUser={this.onChangeUser}
+                    valueUser={this.state.username}
+                    onChangePass={this.onChangePassword}
+                    valuePass={this.state.password}
+                />
+                <ShowAlert
+                    showAlert={this.state.showAlert}
+                    errorMessage={this.state.errorMessage}
+                    onConfirm={() => {
+                        this.setState({showAlert: false})
+                    }}
+                />
+            </Fragment>
         );
     }
 }

@@ -9,8 +9,10 @@ export default function Row(props) {
                         {data}
                     </td>
                 )
-            }
+            }{
+            props.children &&
             <td>{props.children}</td>
+        }
         </tr>
     )
 }

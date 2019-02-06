@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import ProcessTable from "../../process/list/ProcessTable";
 import {restGet} from "../../commons/RestUtils";
+import PageTitle from "../../commons/PageTitle"
 
 export default class DictumProcessTable extends Component {
 
@@ -28,6 +29,7 @@ export default class DictumProcessTable extends Component {
     render() {
         return (
             <div>
+                <PageTitle title="Your asigment processes"/>
                 <ProcessTable
                     processes={this.state.processes}
                     isDictum={true}
