@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(restAuthenticationEntryPoint)//Custom unauthorized response
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api", "/api/profile", "/login*", "**/swagger-ui.html", "**/v2/api-docs").permitAll()//Swagger login and profile
+                .antMatchers("/api", "/api/profile", "/login*", "/logout", "**/swagger-ui.html", "**/v2/api-docs").permitAll()//Swagger login logout and profile
                 .antMatchers("/api/users/**").hasAnyAuthority(ADMIN, MANAGER, END_USER)
                 .antMatchers("/api/processes/**").hasAnyAuthority(MANAGER, END_USER)
                 .antMatchers("/api/dictums/**").hasAuthority(END_USER)
@@ -61,7 +61,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(successHandler)
                 .failureHandler(failureHandler)
                 .and()
-                .logout();
+                .logout()
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID");
     }
 
     /**
