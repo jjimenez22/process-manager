@@ -1,6 +1,6 @@
 # Process Manager
 
-A Spring Boot and React.js application for SoftPlan test.
+A Spring Boot and React.js application for  Users and Processes management.
 
 - The application is responsible for managing processes.
 - There are three (3) types of Users: Administrator, Manager and End-User.
